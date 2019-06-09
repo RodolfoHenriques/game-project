@@ -21,7 +21,7 @@ public class Game {
     public void init() {
         battleField = new BattleField();
         battleField.init();
-        player1 = new Player1("P1", new Tank(new Position(1700, 900)));
+        player1 = new Player1("P1", new Tank(new Position(50, 800)));
         //player2 = new Player2("P2", new Tank(new Position(300, 300)));
 
     }
@@ -31,9 +31,9 @@ public class Game {
 
         while (true) {
             Thread.sleep(delay);
-            if(player1.isKeyPressed()){
+
                 ((Player1) player1).moveTank();
-            }
+                //((Player2) player2).moveTank();
 
         }
     }
