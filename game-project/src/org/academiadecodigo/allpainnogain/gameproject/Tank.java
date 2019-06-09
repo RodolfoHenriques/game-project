@@ -8,7 +8,7 @@ public class Tank {
     private boolean destroyed;
     private Position tankPos;
     private int direction;
-    private int step = 1;
+    private int step = 3;
 
     public Tank(Position tankPos) {
         this.tankPos = tankPos;
@@ -26,34 +26,35 @@ public class Tank {
 
         switch (dir) {
             case NORTH:
-                if (currentTankPosY - 1 < BattleField.MARGIN) {
+                if (currentTankPosY - 2 < BattleField.MARGIN) {
                     break;
                 }
                 currentTankPosY -= step;
                 break;
             case SOUTH:
-                if (currentTankPosY + 1 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
                     break;
                 }
                 currentTankPosY += step;
                 break;
 
             case EAST:
-                if (currentTankPosX + 1 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
                     break;
                 }
                 currentTankPosX += step;
                 break;
 
             case WEST:
-                if (currentTankPosX - 1 < BattleField.MARGIN) {
+                if (currentTankPosX - 2 < BattleField.MARGIN) {
                     break;
                 }
                 currentTankPosX -= step;
                 break;
 
             case SOUTHWEST:
-                if (currentTankPosX - 1 < BattleField.MARGIN) {
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())
+                        || currentTankPosX - 2 < BattleField.MARGIN) {
                     break;
                 }
                 currentTankPosX -= step;
@@ -61,7 +62,8 @@ public class Tank {
                 break;
 
             case NORTHEAST:
-                if (currentTankPosX + 1 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosY - 2 < BattleField.MARGIN
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -69,7 +71,8 @@ public class Tank {
                 break;
 
             case SOUTHEAST:
-                if (currentTankPosX + 1 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -77,7 +80,8 @@ public class Tank {
                 break;
 
             case NORTHWEST:
-                if (currentTankPosX - 1 < BattleField.MARGIN) {
+                if (currentTankPosY - 2 < BattleField.MARGIN
+                        || currentTankPosX - 2 < BattleField.MARGIN) {
                     break;
                 }
                 currentTankPosX -= step;
