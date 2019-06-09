@@ -12,6 +12,7 @@ public class Position {
     private int width = 40;
 
     public Position(int x, int y){
+        
         this.x = x;
         this.y = y;
         tankRectangle = new Rectangle(x,y,width,height);
