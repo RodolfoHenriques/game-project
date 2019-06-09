@@ -35,7 +35,6 @@ public class Game {
         while (true) {
             Thread.sleep(delay);
 
-
                 ((Player1) player1).moveTank();
                 ((Player2) player2).moveTank();
 

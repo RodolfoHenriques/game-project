@@ -14,9 +14,9 @@ public class Position {
     public Position(int x, int y){
         this.x = x;
         this.y = y;
-        tankRectangle = new Rectangle(x,y,width,height); //Test
+        tankRectangle = new Rectangle(x,y,width,height);
         tankRectangle.setColor(Color.LIGHT_GRAY);
-        tankRectangle.fill();                              //Test
+        tankRectangle.fill();
     }
 
     public int getX() {

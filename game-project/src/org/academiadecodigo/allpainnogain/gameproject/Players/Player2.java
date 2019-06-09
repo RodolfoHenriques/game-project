@@ -35,6 +35,10 @@ public class Player2 extends Player {
         left.setKey(KeyboardEvent.KEY_J);
         left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent fire = new KeyboardEvent();
+        fire.setKey(KeyboardEvent.KEY_0);
+        fire.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
 
         KeyboardEvent upRelease = new KeyboardEvent();
         upRelease.setKey(KeyboardEvent.KEY_I);
@@ -53,10 +57,12 @@ public class Player2 extends Player {
         leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
 
+
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
         keyboard.addEventListener(right);
         keyboard.addEventListener(left);
+        keyboard.addEventListener(fire);
 
         keyboard.addEventListener(upRelease);
         keyboard.addEventListener(downRelease);
@@ -84,6 +90,11 @@ public class Player2 extends Player {
             case KeyboardEvent.KEY_J:
                 tank.setDirection(3);
                 isLeft = true;
+                break;
+            case KeyboardEvent.KEY_0:
+                System.out.println("pew pew");
+                // bullet create
+                // bullet = true
                 break;
         }
         super.keyPressed(keyboardEvent);

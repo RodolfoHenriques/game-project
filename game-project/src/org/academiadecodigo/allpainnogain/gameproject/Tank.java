@@ -3,7 +3,7 @@ package org.academiadecodigo.allpainnogain.gameproject;
 
 public class Tank {
 
-    private int health;
+    private int health = 100;
     private int speed;
     private boolean destroyed;
     private Position tankPos;
@@ -15,6 +15,7 @@ public class Tank {
     }
 
     public boolean isDestroyed() {
+
         return destroyed;
     }
 
@@ -39,7 +40,7 @@ public class Tank {
                 break;
 
             case EAST:
-                if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosX + 3 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -94,7 +95,6 @@ public class Tank {
 
         tankPos.setX(currentTankPosX);
         tankPos.setY(currentTankPosY);
-
     }
 
     public int getDirection() {
@@ -108,6 +108,7 @@ public class Tank {
     public void setDirection(int direction) {
         this.direction = direction;
     }
+
 
 
 }
