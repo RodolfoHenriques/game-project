@@ -8,6 +8,7 @@ public class Tank {
     private boolean destroyed;
     private Position tankPos;
     private int direction;
+    private int step = 1;
 
     public Tank(Position tankPos) {
         this.tankPos = tankPos;
@@ -20,7 +21,7 @@ public class Tank {
     public void moveTank() {
         int currentTankPosX = tankPos.getX();
         int currentTankPosY = tankPos.getY();
-        int step = 1;
+
         Direction dir = Direction.values()[direction];
 
         switch (dir) {
