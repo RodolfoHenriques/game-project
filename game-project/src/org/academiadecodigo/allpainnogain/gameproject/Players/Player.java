@@ -17,7 +17,6 @@ abstract public class Player implements KeyboardHandler {
     protected boolean isRight;
 
 
-
     public Player(String name, Tank tank) {
         this.name = name;
         this.tank = tank;
@@ -25,13 +24,14 @@ abstract public class Player implements KeyboardHandler {
         initKeyboard();
     }
 
+
     public boolean hasTank() {
+
         return !tank.isDestroyed();
     }
 
 
     public abstract void initKeyboard();
-
 
 
     @Override
@@ -40,20 +40,25 @@ abstract public class Player implements KeyboardHandler {
         if (isRight && isUp || isRight && isDown || isLeft && isUp || isLeft && isDown) {
 
             if (isRight && isUp) {
+
                 tank.setDirection(4);
             }
+
             if (isRight && isDown) {
+
                 tank.setDirection(6);
             }
+
             if (isLeft && isUp) {
+
                 tank.setDirection(5);
             }
+
             if (isLeft && isDown) {
+
                 tank.setDirection(7);
             }
-            return;
         }
-
     }
 
 
