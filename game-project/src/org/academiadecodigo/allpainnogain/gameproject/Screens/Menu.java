@@ -1,6 +1,5 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
-import org.academiadecodigo.allpainnogain.gameproject.Game;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -12,23 +11,26 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Menu implements KeyboardHandler {
 
     private Keyboard keyboard;
+    private Picture picture = new Picture(0, 0, "menuImage.png");
 
     private Rectangle selectMenuStart = new Rectangle(80, 50, 305, 120);
     private Rectangle selectMenuGuide = new Rectangle(80, 185, 305, 120);
 
-    private boolean rectangleStart = true;
-    private boolean rectangleGuide = true;
-    private boolean enter = false;
+    private boolean rectangleStart;
+    private boolean rectangleGuide;
+
+    private boolean enter;
+    private boolean menuExists;
 
 
     public Menu() {
 
-        Picture picture = new Picture(0, 0, "menuImage.png");
         keyboard = new Keyboard(this);
         initKeyboard();
 
         picture.draw();
         selectMenuStart.draw();
+        menuExists = true;
     }
 
 
@@ -43,7 +45,7 @@ public class Menu implements KeyboardHandler {
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         KeyboardEvent enter = new KeyboardEvent();
-        enter.setKey(KeyboardEvent.KEY_ENTER);
+        enter.setKey(KeyboardEvent.KEY_SPACE);
         enter.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         keyboard.addEventListener(up);
@@ -61,6 +63,8 @@ public class Menu implements KeyboardHandler {
                 selectMenuGuide.delete();
                 selectMenuStart.draw();
 
+                rectangleStart = true;
+                rectangleGuide = false;
 
                 break;
 
@@ -68,23 +72,18 @@ public class Menu implements KeyboardHandler {
                 selectMenuStart.delete();
                 selectMenuGuide.draw();
 
-
-                break;
-
-            case KeyboardEvent.KEY_ENTER:
-
-                enter = true;
-
-                if(keyboardEvent.getKey() == KeyboardEvent.KEY_UP){
-
-                    rectangleStart = true;
-                    rectangleGuide = false;
-                    break;
-                }
-
                 rectangleGuide = true;
                 rectangleStart = false;
+
                 break;
+
+            case KeyboardEvent.KEY_SPACE:
+                picture.delete();
+                selectMenuGuide.delete();
+                selectMenuStart.delete();
+
+                enter = true;
+                menuExists = false;
         }
     }
 
@@ -96,16 +95,16 @@ public class Menu implements KeyboardHandler {
 
 
     public boolean getRectangleStart() {
-
         return rectangleStart;
     }
 
-    public boolean getRectangleGuide() {
-
-        return rectangleGuide;
-    }
 
     public boolean getEnter() {
         return enter;
+    }
+
+
+    public boolean getMenuExists() {
+        return menuExists;
     }
 }
