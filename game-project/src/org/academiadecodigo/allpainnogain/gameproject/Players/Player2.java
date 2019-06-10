@@ -11,14 +11,12 @@ public class Player2 extends Player {
 
 
     public Player2(String name, Tank tank) {
-
         super(name, tank);
         this.tank = tank;
     }
 
 
     public void moveTank() {
-
         tank.moveTank();
     }
 
@@ -66,18 +64,6 @@ public class Player2 extends Player {
         shootRelease.setKey (KeyboardEvent.KEY_0);
         shootRelease.setKeyboardEventType (KeyboardEventType.KEY_RELEASED);
 
-<<<<<<< HEAD
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(right);
-        keyboard.addEventListener(left);
-        keyboard.addEventListener(fire);
-
-        keyboard.addEventListener(upRelease);
-        keyboard.addEventListener(downRelease);
-        keyboard.addEventListener(rightRelease);
-        keyboard.addEventListener(leftRelease);
-=======
 
         keyboard.addEventListener (up);
         keyboard.addEventListener (down);
@@ -90,8 +76,6 @@ public class Player2 extends Player {
         keyboard.addEventListener (rightRelease);
         keyboard.addEventListener (leftRelease);
         keyboard.addEventListener (shootRelease);
-
->>>>>>> master
     }
 
 
@@ -120,17 +104,10 @@ public class Player2 extends Player {
                 break;
 
             case KeyboardEvent.KEY_0:
-<<<<<<< HEAD
-                System.out.println("pew pew");
                 break;
         }
 
-        super.keyPressed(keyboardEvent);
-=======
-                break;
-        }
         super.keyPressed (keyboardEvent);
->>>>>>> master
     }
 
 
@@ -153,19 +130,10 @@ public class Player2 extends Player {
             case KeyboardEvent.KEY_J:
                 isLeft = false;
                 break;
-<<<<<<< HEAD
-        }
-    }
-}
-=======
+
             case KeyboardEvent.KEY_0:
                 shoot ();
                 break;
-
         }
     }
-
-
 }
-
->>>>>>> master
