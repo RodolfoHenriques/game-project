@@ -27,10 +27,20 @@ public class Menu implements KeyboardHandler {
 
         keyboard = new Keyboard(this);
         initKeyboard();
+    }
 
+
+    public void createMenu(){
         pictureMenu.draw();
         selectMenuStart.draw();
         hasMenu = true;
+    }
+
+
+    public void deleteMenu(){
+        pictureMenu.delete();
+        selectMenuGuide.delete();
+        selectMenuStart.delete();
     }
 
 
@@ -78,9 +88,7 @@ public class Menu implements KeyboardHandler {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                pictureMenu.delete();
-                selectMenuGuide.delete();
-                selectMenuStart.delete();
+                deleteMenu();
 
                 enter = true;
                 hasMenu = false;
@@ -98,6 +106,10 @@ public class Menu implements KeyboardHandler {
         return rectangleStart;
     }
 
+
+    public boolean getRectangleGuide() {
+        return rectangleGuide;
+    }
 
     public boolean getEnter() {
         return enter;
