@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.Game;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -10,14 +11,19 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Menu implements KeyboardHandler {
 
-    private Picture picture = new Picture(0, 0, "menuImage.png");
     private Keyboard keyboard;
 
     private Rectangle selectMenuStart = new Rectangle(80, 50, 305, 120);
     private Rectangle selectMenuGuide = new Rectangle(80, 185, 305, 120);
 
+    private boolean rectangleStart = true;
+    private boolean rectangleGuide = true;
+    private boolean enter = false;
+
+
     public Menu() {
 
+        Picture picture = new Picture(0, 0, "menuImage.png");
         keyboard = new Keyboard(this);
         initKeyboard();
 
@@ -54,15 +60,30 @@ public class Menu implements KeyboardHandler {
             case KeyboardEvent.KEY_UP:
                 selectMenuGuide.delete();
                 selectMenuStart.draw();
+
+
                 break;
 
             case KeyboardEvent.KEY_DOWN:
                 selectMenuStart.delete();
                 selectMenuGuide.draw();
+
+
                 break;
 
             case KeyboardEvent.KEY_ENTER:
 
+                enter = true;
+
+                if(keyboardEvent.getKey() == KeyboardEvent.KEY_UP){
+
+                    rectangleStart = true;
+                    rectangleGuide = false;
+                    break;
+                }
+
+                rectangleGuide = true;
+                rectangleStart = false;
                 break;
         }
     }
@@ -71,5 +92,20 @@ public class Menu implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
+    }
+
+
+    public boolean getRectangleStart() {
+
+        return rectangleStart;
+    }
+
+    public boolean getRectangleGuide() {
+
+        return rectangleGuide;
+    }
+
+    public boolean getEnter() {
+        return enter;
     }
 }
