@@ -11,16 +11,16 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Menu implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture picture = new Picture(0, 0, "menuImage.png");
+    private Picture pictureMenu = new Picture(0, 0, "menuImage.png");
 
     private Rectangle selectMenuStart = new Rectangle(80, 50, 305, 120);
     private Rectangle selectMenuGuide = new Rectangle(80, 185, 305, 120);
 
-    private boolean rectangleStart;
+    private boolean rectangleStart = true;
     private boolean rectangleGuide;
 
     private boolean enter;
-    private boolean menuExists;
+    private boolean hasMenu;
 
 
     public Menu() {
@@ -28,9 +28,9 @@ public class Menu implements KeyboardHandler {
         keyboard = new Keyboard(this);
         initKeyboard();
 
-        picture.draw();
+        pictureMenu.draw();
         selectMenuStart.draw();
-        menuExists = true;
+        hasMenu = true;
     }
 
 
@@ -78,12 +78,12 @@ public class Menu implements KeyboardHandler {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                picture.delete();
+                pictureMenu.delete();
                 selectMenuGuide.delete();
                 selectMenuStart.delete();
 
                 enter = true;
-                menuExists = false;
+                hasMenu = false;
         }
     }
 
@@ -104,7 +104,7 @@ public class Menu implements KeyboardHandler {
     }
 
 
-    public boolean getMenuExists() {
-        return menuExists;
+    public boolean getHasMenu() {
+        return hasMenu;
     }
 }

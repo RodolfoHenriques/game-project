@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject;
 
+import org.academiadecodigo.allpainnogain.gameproject.Screens.Guide;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.Menu;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
         Menu menu = new Menu();
 
 
-        while(menu.getMenuExists()){
+        while(menu.getHasMenu()){
             Thread.sleep(0);
         }
 
@@ -23,8 +24,6 @@ public class Main {
                 game.init();
                 game.start();
             }
-
-            System.out.println("Guide");
         }
     }
 }

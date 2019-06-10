@@ -6,8 +6,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class BattleField {
 
     public static final int MARGIN = 0;
-    public static final int WIDTH = 1365;
-    public static final int HEIGHT = 708;
+    public static final int WIDTH = 1366;
+    public static final int HEIGHT = 768;
 
 
     public void init() {
