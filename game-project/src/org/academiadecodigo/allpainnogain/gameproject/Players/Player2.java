@@ -56,55 +56,56 @@ public class Player2 extends Player {
         leftRelease.setKey(KeyboardEvent.KEY_J);
         leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent shootRelease = new KeyboardEvent ();
+        shootRelease.setKey (KeyboardEvent.KEY_0);
+        shootRelease.setKeyboardEventType (KeyboardEventType.KEY_RELEASED);
 
 
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(right);
-        keyboard.addEventListener(left);
-        keyboard.addEventListener(fire);
+        keyboard.addEventListener (up);
+        keyboard.addEventListener (down);
+        keyboard.addEventListener (right);
+        keyboard.addEventListener (left);
+        keyboard.addEventListener (fire);
 
-        keyboard.addEventListener(upRelease);
-        keyboard.addEventListener(downRelease);
-        keyboard.addEventListener(rightRelease);
-        keyboard.addEventListener(leftRelease);
+        keyboard.addEventListener (upRelease);
+        keyboard.addEventListener (downRelease);
+        keyboard.addEventListener (rightRelease);
+        keyboard.addEventListener (leftRelease);
+        keyboard.addEventListener (shootRelease);
 
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
+        switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_I:
-                tank.setDirection(0);
+                tank.setDirection (0);
                 isUp = true;
                 break;
             case KeyboardEvent.KEY_K:
-                tank.setDirection(1);
+                tank.setDirection (1);
                 isDown = true;
                 break;
             case KeyboardEvent.KEY_L:
-                tank.setDirection(2);
+                tank.setDirection (2);
                 isRight = true;
                 break;
             case KeyboardEvent.KEY_J:
-                tank.setDirection(3);
+                tank.setDirection (3);
                 isLeft = true;
                 break;
             case KeyboardEvent.KEY_0:
-                System.out.println("pew pew");
-                // bullet create
-                // bullet = true
                 break;
         }
-        super.keyPressed(keyboardEvent);
+        super.keyPressed (keyboardEvent);
     }
 
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
+        switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_I:
                 //  tank.setDirection(0);
                 isUp = false;
@@ -123,10 +124,13 @@ public class Player2 extends Player {
                 //tank.setDirection(3);
                 isLeft = false;
                 break;
-
+            case KeyboardEvent.KEY_0:
+                shoot ();
+                break;
 
         }
     }
+
 
 }
 

@@ -59,19 +59,23 @@ public class Player1 extends Player {
         leftRelease.setKey(KeyboardEvent.KEY_A);
         leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent shootRelease = new KeyboardEvent ();
+        shootRelease.setKey (KeyboardEvent.KEY_1);
+        shootRelease.setKeyboardEventType (KeyboardEventType.KEY_RELEASED);
 
 
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(right);
-        keyboard.addEventListener(left);
-        keyboard.addEventListener(fire);
+        keyboard.addEventListener (up);
+        keyboard.addEventListener (down);
+        keyboard.addEventListener (right);
+        keyboard.addEventListener (left);
+        keyboard.addEventListener (fire);
 
 
-        keyboard.addEventListener(upRelease);
-        keyboard.addEventListener(downRelease);
-        keyboard.addEventListener(rightRelease);
-        keyboard.addEventListener(leftRelease);
+        keyboard.addEventListener (upRelease);
+        keyboard.addEventListener (downRelease);
+        keyboard.addEventListener (rightRelease);
+        keyboard.addEventListener (leftRelease);
+        keyboard.addEventListener (shootRelease);
 
     }
 
@@ -98,22 +102,21 @@ public class Player1 extends Player {
                 isLeft = true;
                 break;
             case KeyboardEvent.KEY_1:
-                System.out.println("traaaa traaaa...");
-                // bullet create
-                // bullet = true
                 break;
+
+
         }
 
-        super.keyPressed(keyboardEvent);
+        super.keyPressed (keyboardEvent);
     }
 
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
+        switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_W:
-                //  tank.setDirection(0);
+                //tank.setDirection(0);
                 isUp = false;
                 break;
             case KeyboardEvent.KEY_S:
@@ -128,11 +131,14 @@ public class Player1 extends Player {
 
             case KeyboardEvent.KEY_A:
                 //tank.setDirection(3);
+                System.out.println ("left");
                 isLeft = false;
                 break;
-
-
+            case KeyboardEvent.KEY_1:
+                shoot ();
+                break;
 
         }
+
     }
 }

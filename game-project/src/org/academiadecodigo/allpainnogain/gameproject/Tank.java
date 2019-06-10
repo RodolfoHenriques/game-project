@@ -1,6 +1,8 @@
 package org.academiadecodigo.allpainnogain.gameproject;
 
 
+import java.util.LinkedList;
+
 public class Tank {
 
     private int health = 100;
@@ -9,6 +11,8 @@ public class Tank {
     private Position tankPos;
     private int direction;
     private int step = 3;
+    private Bullet bullet;
+    protected LinkedList<Bullet> bulletList = new LinkedList<Bullet> ();
 
     public Tank(Position tankPos) {
         this.tankPos = tankPos;
@@ -20,10 +24,10 @@ public class Tank {
     }
 
     public void moveTank() {
-        int currentTankPosX = tankPos.getX();
-        int currentTankPosY = tankPos.getY();
+        int currentTankPosX = tankPos.getX ();
+        int currentTankPosY = tankPos.getY ();
 
-        Direction dir = Direction.values()[direction];
+        Direction dir = Direction.values ()[direction];
 
         switch (dir) {
             case NORTH:
@@ -33,14 +37,14 @@ public class Tank {
                 currentTankPosY -= step;
                 break;
             case SOUTH:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())) {
                     break;
                 }
                 currentTankPosY += step;
                 break;
 
             case EAST:
-                if (currentTankPosX + 3 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosX + 3 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -54,7 +58,7 @@ public class Tank {
                 break;
 
             case SOUTHWEST:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())
                         || currentTankPosX - 2 < BattleField.MARGIN) {
                     break;
                 }
@@ -64,7 +68,7 @@ public class Tank {
 
             case NORTHEAST:
                 if (currentTankPosY - 2 < BattleField.MARGIN
-                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -72,8 +76,8 @@ public class Tank {
                 break;
 
             case SOUTHEAST:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())
-                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle().getWidth())) {
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankPos.getTankRectangle ().getWidth ())) {
                     break;
                 }
                 currentTankPosX += step;
@@ -91,10 +95,10 @@ public class Tank {
         }
 
 
-        tankPos.getTankRectangle().translate(currentTankPosX - tankPos.getX(), currentTankPosY - tankPos.getY());
+        tankPos.getTankRectangle ().translate (currentTankPosX - tankPos.getX (), currentTankPosY - tankPos.getY ());
 
-        tankPos.setX(currentTankPosX);
-        tankPos.setY(currentTankPosY);
+        tankPos.setX (currentTankPosX);
+        tankPos.setY (currentTankPosY);
     }
 
     public int getDirection() {
@@ -109,6 +113,18 @@ public class Tank {
         this.direction = direction;
     }
 
+    public void shoot() {
 
 
+        bullet = new Bullet (tankPos.getX (), tankPos.getY (), direction, this);
+        bulletList.add (bullet);
+
+
+    }
+
+
+    public LinkedList<Bullet> getBulletList() {
+        return bulletList;
+    }
 }
+
