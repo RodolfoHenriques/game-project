@@ -61,7 +61,11 @@ public class Player1 extends Player {
         leftRelease.setKey(KeyboardEvent.KEY_A);
         leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent shootRelease = new KeyboardEvent ();
+        shootRelease.setKey (KeyboardEvent.KEY_1);
+        shootRelease.setKeyboardEventType (KeyboardEventType.KEY_RELEASED);
 
+<<<<<<< HEAD
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
         keyboard.addEventListener(right);
@@ -73,6 +77,22 @@ public class Player1 extends Player {
         keyboard.addEventListener(downRelease);
         keyboard.addEventListener(rightRelease);
         keyboard.addEventListener(leftRelease);
+=======
+
+        keyboard.addEventListener (up);
+        keyboard.addEventListener (down);
+        keyboard.addEventListener (right);
+        keyboard.addEventListener (left);
+        keyboard.addEventListener (fire);
+
+
+        keyboard.addEventListener (upRelease);
+        keyboard.addEventListener (downRelease);
+        keyboard.addEventListener (rightRelease);
+        keyboard.addEventListener (leftRelease);
+        keyboard.addEventListener (shootRelease);
+
+>>>>>>> master
     }
 
 
@@ -101,19 +121,28 @@ public class Player1 extends Player {
                 break;
 
             case KeyboardEvent.KEY_1:
+<<<<<<< HEAD
                 System.out.println("traaaa traaaa...");
+=======
+>>>>>>> master
                 break;
+
+
         }
 
-        super.keyPressed(keyboardEvent);
+        super.keyPressed (keyboardEvent);
     }
 
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
+        switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_W:
+<<<<<<< HEAD
+=======
+                //tank.setDirection(0);
+>>>>>>> master
                 isUp = false;
                 break;
 
@@ -126,8 +155,20 @@ public class Player1 extends Player {
                 break;
 
             case KeyboardEvent.KEY_A:
+<<<<<<< HEAD
                 isLeft = false;
                 break;
+=======
+                //tank.setDirection(3);
+                System.out.println ("left");
+                isLeft = false;
+                break;
+            case KeyboardEvent.KEY_1:
+                shoot ();
+                break;
+
+>>>>>>> master
         }
+
     }
 }

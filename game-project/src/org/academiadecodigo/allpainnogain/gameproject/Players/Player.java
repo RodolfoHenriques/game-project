@@ -66,4 +66,11 @@ abstract public class Player implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+    public void shoot(){
+        this.tank.shoot();
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
 }
