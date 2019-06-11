@@ -19,6 +19,7 @@ abstract public class Collidable {
 
     public static void checkTankBulletCollision() {
 
+
         if (listBullets.size() == 0) {
             return;
         }
@@ -28,10 +29,28 @@ abstract public class Collidable {
 
                 for (int i = 0; i < listBullets.size(); i++) {
 
-                    if (tank.getX() < listBullets.get(i).getX() + listBullets.get(i).getWidth() &&
-                            tank.getX() + tank.getWidth() > listBullets.get(i).getX() &&
-                            tank.getY() < listBullets.get(i).getY() + listBullets.get(i).getHeight() &&
-                            tank.getY() + tank.getHeight() > listBullets.get(i).getY()) {
+                    if (tank.getX() <
+                            listBullets.get(i).getX()
+                            +
+                                    listBullets.get(i).getWidth()
+                            &&
+                            tank.getX()
+                                    + tank.getWidth()
+                                    >
+                                    listBullets.get(i).getX()
+                            &&
+                            tank.getY()
+                                    <
+                                    listBullets.get(i).getY()
+                                           +
+                                            listBullets.get(i).getHeight()
+                            &&
+                           tank.getY()
+                                    + tank.getHeight()
+                                    >
+                                    listBullets.get(i).getY()
+                                    )
+                                    {
                         listBullets.get(i).removeBullet();
                         tank.setHealth(Bullet.DAMAGE);
                         System.out.println("P1 life: " + listTanks.get(0).getHealth() +" | P2 life: " + listTanks.get(1).getHealth());

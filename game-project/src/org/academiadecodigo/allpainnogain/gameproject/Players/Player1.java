@@ -117,21 +117,21 @@ public class Player1 extends Player {
 
         switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_W:
-                tank.setDirection(0);
+                //tank.setDirection(0);
                 isUp = false;
                 break;
             case KeyboardEvent.KEY_S:
-                tank.setDirection(1);
+                //tank.setDirection(1);
                 isDown = false;
                 break;
 
             case KeyboardEvent.KEY_D:
-                tank.setDirection(2);
+                //tank.setDirection(2);
                 isRight = false;
                 break;
 
             case KeyboardEvent.KEY_A:
-                tank.setDirection(3);
+                //tank.setDirection(3);
                 isLeft = false;
                 break;
             case KeyboardEvent.KEY_1:

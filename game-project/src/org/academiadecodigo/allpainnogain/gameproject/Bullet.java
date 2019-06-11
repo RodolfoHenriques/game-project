@@ -12,10 +12,10 @@ public class Bullet extends Collidable {
     private Tank tank;
     public static final int DAMAGE = 5;
     private Picture regularBullet;
-    private int bulletSizeX = 15;           //PESCADATE WITH RABATE IN BOCATE
-    private int bulletSizeY = 15;           //PESCADATE WITH RABATE IN BOCATE
+    private int bulletSizeX = 10;           //PESCADATE WITH RABATE IN BOCATE
+    private int bulletSizeY = 10;           //PESCADATE WITH RABATE IN BOCATE
     private int direction;
-    private int step = 5;
+    private int step = 3;
 
     //TEST SECTION
     private int counter;
@@ -32,14 +32,14 @@ public class Bullet extends Collidable {
 
 
     public Bullet(int tankPosX, int tankPosY, int direction, Tank tank) {
-        bulletInitX = tankPosX + tank.getWidth() / 2 - bulletSizeX / 2;
-        bulletInitY = tankPosY + tank.getHeight() / 2 - bulletSizeY / 2;
-        regularBullet = new Picture(bulletInitX, bulletInitY, "poop.png");
+        bulletInitX = tankPosX + tank.getWidth () / 2 - bulletSizeX / 2;
+        bulletInitY = tankPosY + tank.getHeight () / 2 - bulletSizeY / 2;
+        regularBullet = new Picture (bulletInitX, bulletInitY, "poop.png");
         this.tank = tank;
         this.direction = direction;
-        listBullets.add(this);
-        outOfTankX = tank.getWidth() / 2 + bulletSizeX / 2 + 5;
-        outOfTankY = tank.getHeight() / 2 + bulletSizeY / 2 + 5;
+        listBullets.add (this);
+        outOfTankX = tank.getWidth () / 2 + bulletSizeX / 2 + 10;
+        outOfTankY = tank.getHeight () / 2 + bulletSizeY / 2 + 10;
         auxX = bulletInitX;
         auxY = bulletInitY;
 
@@ -47,15 +47,15 @@ public class Bullet extends Collidable {
 
     public void move() {
 
-        int currentBulletPosX = regularBullet.getX();
-        int currentBulletPosY = regularBullet.getY();
+        int currentBulletPosX = regularBullet.getX ();
+        int currentBulletPosY = regularBullet.getY ();
 
 
-        Direction dir = Direction.values()[direction];
+        Direction dir = Direction.values ()[direction];
 
         if (counter != 0) {
-            outOfTankX = 0;
-            outOfTankY = 0;
+            outOfTankX = 1;
+            outOfTankY = 1;
         }
 
 
@@ -64,16 +64,18 @@ public class Bullet extends Collidable {
 
         switch (dir) {
             case NORTH:
-                if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
                 currentBulletPosY -= (outOfTankX + step);
                 break;
             case SOUTH:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth ()) || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -81,37 +83,40 @@ public class Bullet extends Collidable {
                 break;
 
             case EAST:
-                if (currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth ()) || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
-
-                //MOV PIRILAU
-                //currentBulletPosY = auxY + ((int) (20-20*(Math.sin(counter*57))));
-                //currentBulletPosX += (outOfTankX + step + ((int) (20*(Math.sin(counter*57)))));
-
-                //currentBulletPosX += (outOfTankX + step);
-                //currentBulletPosY += (outOfTankX + step);
-
-                //PARABOLA INVERTIDA
-                //currentBulletPosX += (outOfTankX + step*5);
-                //currentBulletPosY = auxY - counter*counter;
-
-                //PARABOLA NORMAL
-                //currentBulletPosX += (outOfTankX + step*5);
-                //currentBulletPosY = auxY + counter*counter;
-
-                //PARA MANDAR DUAS BALAS
-
-                currentBulletPosX += (outOfTankX + step * 5);
-                currentBulletPosY = auxY + counter * 3;
-
+                currentBulletPosX += (outOfTankX + step);
                 break;
 
+            //MOV PIRILAU
+            //currentBulletPosY = auxY + ((int) (20-20*(Math.sin(counter*57))));
+            //currentBulletPosX += (outOfTankX + step + ((int) (20*(Math.sin(counter*57)))));
+
+            //currentBulletPosX += (outOfTankX + step);
+            //currentBulletPosY += (outOfTankX + step);
+
+            //PARABOLA INVERTIDA
+            //currentBulletPosX += (outOfTankX + step*5);
+            //currentBulletPosY = auxY - counter*counter;
+
+            //PARABOLA NORMAL
+            //currentBulletPosX += (outOfTankX + step*5);
+            //currentBulletPosY = auxY + counter*counter;
+
+            //PARA MANDAR DUAS BALAS
+
+            //currentBulletPosX += (outOfTankX + step * 5);
+            //currentBulletPosY = auxY + counter * 3;
+
+
             case WEST:
-                if (currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -119,9 +124,10 @@ public class Bullet extends Collidable {
                 break;
 
             case SOUTHWEST:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
-                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth ())
+                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -131,8 +137,9 @@ public class Bullet extends Collidable {
 
             case NORTHEAST:
                 if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
-                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
+                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth ()) || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -141,9 +148,10 @@ public class Bullet extends Collidable {
                 break;
 
             case SOUTHEAST:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
-                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
+                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth ())
+                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth ()) || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -153,8 +161,9 @@ public class Bullet extends Collidable {
 
             case NORTHWEST:
                 if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
-                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
+                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision ()) {
+                    removeBullet ();
+                    regularBullet.delete ();
                     puuuuuuummm = true;
                     return;
                 }
@@ -164,18 +173,18 @@ public class Bullet extends Collidable {
         }
 
 
-        regularBullet.translate(currentBulletPosX - regularBullet.getX(), currentBulletPosY - regularBullet.getY());
+        regularBullet.translate (currentBulletPosX - regularBullet.getX (), currentBulletPosY - regularBullet.getY ());
         //regularBullet.setColor(Color.MAGENTA);
         //regularBullet.fill();
-        regularBullet.draw();
+        regularBullet.draw ();
 
 
     }
 
     public void removeBullet() {
 
-        listBullets.remove(this);
-        regularBullet.delete();
+        listBullets.remove (this);
+
     }
 
 
@@ -185,37 +194,57 @@ public class Bullet extends Collidable {
 
 
     boolean checkBulletObjCollision() {
+        Bullet tempBullet;
+        Obstacle tempObstacle;
 
-
-        for (Bullet bullet : listBullets) {
-
-            if (bullet == null) {
+        for (int i = 0; i < listBullets.size (); i++) {
+            tempBullet = listBullets.get (i);
+            if (tempBullet == null) {
                 return false;
             }
+            for (int j = 0; j < listObstacles.size (); j++) {
+                tempObstacle = listObstacles.get (j);
+                if (
 
-            for (Obstacle obstacle : listObstacles) {
-                if (prevX(direction) < obstacle.getX() + obstacle.getWidth() && prevX(direction) + tank.getWidth() > obstacle.getX() && prevY(direction) < obstacle.getY() + obstacle.getHeight() && prevY(direction) + tank.getHeight() > obstacle.getY()) {
+                      prevX (direction)  <
+                        tempObstacle.getX ()
+                               +
+                                tempObstacle.getWidth ()
+                        &&
+                        prevX (direction)
+                                > tempObstacle.getX ()
+                        &&
+                        prevY (direction)
+                                <
+                                tempObstacle.getY ()
+                                        +
+                                        tempObstacle.getHeight ()
+                        &&
+                        prevY (direction)
+                                >
+                                tempObstacle.getY ()
+                )
                     return true;
-                }
             }
         }
         return false;
     }
 
 
+
     public int prevX(int direction) {
         switch (direction) {
             case 0:
             case 1:
-                return getX();
+                return getX ();
             case 2:
             case 4:
             case 6:
-                return getX() + step;
+                return getX () + 2;
             case 3:
             case 5:
             case 7:
-                return getX() - step;
+                return getX () - 2;
         }
         return 0;
     }
@@ -226,16 +255,16 @@ public class Bullet extends Collidable {
             case 0:
             case 4:
             case 5:
-                return getY() - step;
+                return getY ();
             case 1:
             case 6:
             case 7:
-                return getY() + step;
+                return getY () + 2;
             case 2:
             case 3:
-                return getY();
+                return getY () -2;
         }
-        return 0;
+        return 1;
     }
 
     public Picture getRegularBullet() {
@@ -244,22 +273,22 @@ public class Bullet extends Collidable {
 
     @Override
     int getX() {
-        return regularBullet.getX();
+        return regularBullet.getX ();
     }
 
     @Override
     int getY() {
-        return regularBullet.getY();
+        return regularBullet.getY ();
     }
 
     @Override
     int getWidth() {
-        return regularBullet.getWidth();
+        return regularBullet.getWidth ();
     }
 
     @Override
     int getHeight() {
-        return regularBullet.getHeight();
+        return regularBullet.getHeight ();
     }
 
 
