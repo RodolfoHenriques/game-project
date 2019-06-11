@@ -19,7 +19,7 @@ public class Menu implements KeyboardHandler {
     private boolean rectangleStart = true;
     private boolean rectangleGuide;
 
-    private boolean enter;
+    private boolean space;
     private boolean hasMenu;
 
 
@@ -31,6 +31,7 @@ public class Menu implements KeyboardHandler {
 
 
     public void createMenu(){
+
         pictureMenu.draw();
         selectMenuStart.draw();
         hasMenu = true;
@@ -38,6 +39,7 @@ public class Menu implements KeyboardHandler {
 
 
     public void deleteMenu(){
+
         pictureMenu.delete();
         selectMenuGuide.delete();
         selectMenuStart.delete();
@@ -54,13 +56,13 @@ public class Menu implements KeyboardHandler {
         down.setKey(KeyboardEvent.KEY_DOWN);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent enter = new KeyboardEvent();
-        enter.setKey(KeyboardEvent.KEY_SPACE);
-        enter.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent space = new KeyboardEvent();
+        space.setKey(KeyboardEvent.KEY_SPACE);
+        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
-        keyboard.addEventListener(enter);
+        keyboard.addEventListener(space);
     }
 
 
@@ -90,7 +92,7 @@ public class Menu implements KeyboardHandler {
             case KeyboardEvent.KEY_SPACE:
                 deleteMenu();
 
-                enter = true;
+                space = true;
                 hasMenu = false;
         }
     }
@@ -106,17 +108,19 @@ public class Menu implements KeyboardHandler {
         return rectangleStart;
     }
 
-
     public boolean getRectangleGuide() {
         return rectangleGuide;
     }
 
-    public boolean getEnter() {
-        return enter;
+    public boolean getSpace() {
+        return space;
     }
-
 
     public boolean getHasMenu() {
         return hasMenu;
+    }
+
+    public void setRectangleStart(boolean rectangleStart) {
+        this.rectangleStart = rectangleStart;
     }
 }

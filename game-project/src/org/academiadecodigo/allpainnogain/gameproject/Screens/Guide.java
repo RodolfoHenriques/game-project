@@ -24,12 +24,14 @@ public class Guide implements KeyboardHandler {
 
 
     public void createGuide(){
+
         pictureGuide.draw();
         hasGuide = true;
     }
 
 
     public void deleteGuide(){
+
         pictureGuide.delete();
         hasGuide = false;
     }
@@ -64,7 +66,6 @@ public class Guide implements KeyboardHandler {
     public boolean getGoBack() {
         return goBack;
     }
-
 
     public boolean getHasGuide() {
         return hasGuide;

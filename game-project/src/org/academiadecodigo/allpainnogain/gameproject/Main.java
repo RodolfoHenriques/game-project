@@ -8,14 +8,15 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Menu menu = new Menu();
-        menu.createMenu();
-
-        while (menu.getHasMenu()) {
-            Thread.sleep(0);
-        }
 
         while (true) {
-            if (menu.getEnter()) {
+            menu.createMenu();
+
+            while (menu.getHasMenu()) {
+                Thread.sleep(0);
+            }
+
+            if (menu.getSpace()) {
 
                 if (menu.getRectangleStart()) {
                     menu.deleteMenu();
@@ -27,6 +28,7 @@ public class Main {
                 }
 
                 if (menu.getRectangleGuide()) {
+
                     Guide guide = new Guide();
                     guide.createGuide();
 
@@ -34,10 +36,9 @@ public class Main {
                         Thread.sleep(0);
                     }
 
-                    while (true) {
-                        if (guide.getGoBack()) {
-                            guide.deleteGuide();
-                        }
+                    if (guide.getGoBack()) {
+                        guide.deleteGuide();
+                        menu.setRectangleStart(true);
                     }
                 }
             }
