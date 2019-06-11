@@ -1,7 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Players;
 
 import org.academiadecodigo.allpainnogain.gameproject.Tank;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
@@ -9,21 +8,17 @@ public class Player2 extends Player {
 
     private Tank tank;
 
-
     public Player2(String name, Tank tank) {
         super(name, tank);
         this.tank = tank;
     }
 
-
     public void moveTank() {
         tank.moveTank();
     }
 
-
     @Override
     public void initKeyboard() {
-
         KeyboardEvent up = new KeyboardEvent();
         up.setKey(KeyboardEvent.KEY_I);
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -43,6 +38,7 @@ public class Player2 extends Player {
         KeyboardEvent fire = new KeyboardEvent();
         fire.setKey(KeyboardEvent.KEY_0);
         fire.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
 
         KeyboardEvent upRelease = new KeyboardEvent();
         upRelease.setKey(KeyboardEvent.KEY_I);
@@ -76,8 +72,8 @@ public class Player2 extends Player {
         keyboard.addEventListener (rightRelease);
         keyboard.addEventListener (leftRelease);
         keyboard.addEventListener (shootRelease);
-    }
 
+    }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -87,26 +83,21 @@ public class Player2 extends Player {
                 tank.setDirection (0);
                 isUp = true;
                 break;
-
             case KeyboardEvent.KEY_K:
                 tank.setDirection (1);
                 isDown = true;
                 break;
-
             case KeyboardEvent.KEY_L:
                 tank.setDirection (2);
                 isRight = true;
                 break;
-
             case KeyboardEvent.KEY_J:
                 tank.setDirection (3);
                 isLeft = true;
                 break;
-
             case KeyboardEvent.KEY_0:
                 break;
         }
-
         super.keyPressed (keyboardEvent);
     }
 
@@ -116,24 +107,30 @@ public class Player2 extends Player {
 
         switch (keyboardEvent.getKey ()) {
             case KeyboardEvent.KEY_I:
+                //  tank.setDirection(0);
                 isUp = false;
                 break;
-
             case KeyboardEvent.KEY_K:
+                //tank.setDirection(1);
                 isDown = false;
                 break;
 
             case KeyboardEvent.KEY_L:
+                //tank.setDirection(2);
                 isRight = false;
                 break;
 
             case KeyboardEvent.KEY_J:
+                //tank.setDirection(3);
                 isLeft = false;
                 break;
-
             case KeyboardEvent.KEY_0:
                 shoot ();
                 break;
+
         }
     }
+
+
 }
+

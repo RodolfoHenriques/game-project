@@ -2,11 +2,48 @@ package org.academiadecodigo.allpainnogain.gameproject;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Obstacle extends Picture {
+public class Obstacle extends Collidable{
 
-    public void drawObstacle(int x, int y, String string) {
+    private int x;
+    private int y;
+    private String pictureName;
+    private Position obstaclePos;
+    private Picture picture;
 
-        Picture picture = new Picture(x, y, string);
+
+
+    public Obstacle(int x, int y, String pictureName){
+        this.x = x;
+        this.y = y;
+        this.pictureName = pictureName;
+        listObstacles.add(this);
+
+    }
+
+
+    public void drawObstacle() {
+        picture = new Picture(x, y, pictureName);
         picture.draw();
     }
+
+    @Override
+    int getX() {
+        return x;
+    }
+
+    @Override
+    int getY() {
+        return y;
+    }
+
+    @Override
+    int getWidth() {
+        return picture.getWidth();
+    }
+
+    @Override
+    int getHeight() {
+        return picture.getHeight();
+    }
+
 }
