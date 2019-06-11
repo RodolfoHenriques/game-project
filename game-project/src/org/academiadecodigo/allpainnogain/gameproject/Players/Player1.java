@@ -24,15 +24,15 @@ public class Player1 extends Player {
     public void initKeyboard() {
 
         KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_W);
+        up.setKey(KeyboardEvent.KEY_E);
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_A);
+        down.setKey(KeyboardEvent.KEY_D);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         KeyboardEvent right = new KeyboardEvent();
-        right.setKey(KeyboardEvent.KEY_D);
+        right.setKey(KeyboardEvent.KEY_F);
         right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         KeyboardEvent left = new KeyboardEvent();
@@ -45,19 +45,19 @@ public class Player1 extends Player {
 
 
         KeyboardEvent upRelease = new KeyboardEvent();
-        upRelease.setKey(KeyboardEvent.KEY_W);
+        upRelease.setKey(KeyboardEvent.KEY_E);
         upRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent downRelease = new KeyboardEvent();
-        downRelease.setKey(KeyboardEvent.KEY_S);
+        downRelease.setKey(KeyboardEvent.KEY_D);
         downRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent rightRelease = new KeyboardEvent();
-        rightRelease.setKey(KeyboardEvent.KEY_D);
+        rightRelease.setKey(KeyboardEvent.KEY_F);
         rightRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent leftRelease = new KeyboardEvent();
-        leftRelease.setKey(KeyboardEvent.KEY_A);
+        leftRelease.setKey(KeyboardEvent.KEY_S);
         leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent shootRelease = new KeyboardEvent ();
@@ -86,19 +86,19 @@ public class Player1 extends Player {
 
 
         switch (keyboardEvent.getKey()) {
-            case KeyboardEvent.KEY_W:
+            case KeyboardEvent.KEY_E:
                 tank.setDirection(0);
                 isUp = true;
                 break;
-            case KeyboardEvent.KEY_S:
+            case KeyboardEvent.KEY_D:
                 tank.setDirection(1);
                 isDown = true;
                 break;
-            case KeyboardEvent.KEY_D:
+            case KeyboardEvent.KEY_F:
                 tank.setDirection(2);
                 isRight = true;
                 break;
-            case KeyboardEvent.KEY_A:
+            case KeyboardEvent.KEY_S:
                 tank.setDirection(3);
                 isLeft = true;
                 break;
@@ -116,22 +116,22 @@ public class Player1 extends Player {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey ()) {
-            case KeyboardEvent.KEY_W:
-                tank.setDirection(0);
+            case KeyboardEvent.KEY_E:
+                //tank.setDirection(0);
                 isUp = false;
                 break;
-            case KeyboardEvent.KEY_S:
-                tank.setDirection(1);
+            case KeyboardEvent.KEY_D:
+                //tank.setDirection(1);
                 isDown = false;
                 break;
 
-            case KeyboardEvent.KEY_D:
-                tank.setDirection(2);
+            case KeyboardEvent.KEY_F:
+                //tank.setDirection(2);
                 isRight = false;
                 break;
 
-            case KeyboardEvent.KEY_A:
-                tank.setDirection(3);
+            case KeyboardEvent.KEY_S:
+                //tank.setDirection(3);
                 isLeft = false;
                 break;
             case KeyboardEvent.KEY_1:
