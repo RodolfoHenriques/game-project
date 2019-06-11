@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -30,15 +31,28 @@ public class Menu implements KeyboardHandler {
     }
 
 
-    public void createMenu(){
+    public void createMenu() throws InterruptedException {
+
+        Sound sound = new Sound("/Resources/menuMusic.wav");
 
         pictureMenu.draw();
         selectMenuStart.draw();
         hasMenu = true;
+
+        try {
+            sound.play(true);
+
+            Thread.sleep(10000); // wait 10 seconds
+
+        } catch (InterruptedException e) {
+            System.err.println(e.getMessage());
+        }
+
+
     }
 
 
-    public void deleteMenu(){
+    public void deleteMenu() {
 
         pictureMenu.delete();
         selectMenuGuide.delete();
