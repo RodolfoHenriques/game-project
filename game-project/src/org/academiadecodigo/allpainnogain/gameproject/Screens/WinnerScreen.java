@@ -1,6 +1,5 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
-import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -8,42 +7,41 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-
-public class Menu implements KeyboardHandler {
+public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureMenu = new Picture(0, 0, "menuImage.png");
+    private Picture pictureWinnerScreen = new Picture(0, 0, "poop2.png");
 
-    private Rectangle selectMenuStart = new Rectangle(80, 50, 305, 120);
-    private Rectangle selectMenuGuide = new Rectangle(80, 185, 305, 120);
 
-    private boolean rectangleStart = true;
-    private boolean rectangleGuide;
+    //change values of rectangle
+    private Rectangle selectTryAgain = new Rectangle(80, 50, 305, 120);
+    private Rectangle selectExit = new Rectangle(80, 185, 305, 120);
+
+    private boolean rectangleTryAgain = true;
+    private boolean rectangleExit;
 
     private boolean space;
-    private boolean hasMenu;
+    private boolean hasWinnerScreen;
 
-
-    public Menu() {
+    public WinnerScreen() {
 
         keyboard = new Keyboard(this);
         initKeyboard();
     }
 
+    public void createWinnerScreen() {
 
-    public void createMenu() {
-
-        pictureMenu.draw();
-        selectMenuStart.draw();
-        hasMenu = true;
+        pictureWinnerScreen.draw();
+        selectTryAgain.draw();
+        hasWinnerScreen = true;
     }
 
 
-    public void deleteMenu() {
+    public void deleteWinnerScreen() {
 
-        pictureMenu.delete();
-        selectMenuGuide.delete();
-        selectMenuStart.delete();
+        pictureWinnerScreen.delete();
+        selectExit.delete();
+        selectTryAgain.delete();
     }
 
 
@@ -67,34 +65,35 @@ public class Menu implements KeyboardHandler {
     }
 
 
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_UP:
-                selectMenuGuide.delete();
-                selectMenuStart.draw();
+                selectExit.delete();
+                selectTryAgain.draw();
 
-                rectangleStart = true;
-                rectangleGuide = false;
+                rectangleTryAgain = true;
+                rectangleExit = false;
 
                 break;
 
             case KeyboardEvent.KEY_DOWN:
-                selectMenuStart.delete();
-                selectMenuGuide.draw();
+                selectTryAgain.delete();
+                selectExit.draw();
 
-                rectangleGuide = true;
-                rectangleStart = false;
+                rectangleExit = true;
+                rectangleTryAgain = false;
 
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                deleteMenu();
+                deleteWinnerScreen();
 
                 space = true;
-                hasMenu = false;
+                hasWinnerScreen = false;
         }
     }
 
@@ -105,23 +104,23 @@ public class Menu implements KeyboardHandler {
     }
 
 
-    public boolean getRectangleStart() {
-        return rectangleStart;
+    public boolean getRectangleTryAgain() {
+        return rectangleTryAgain;
     }
 
-    public boolean getRectangleGuide() {
-        return rectangleGuide;
+    public boolean getRectangleExit() {
+        return rectangleExit;
     }
 
     public boolean getSpace() {
         return space;
     }
 
-    public boolean getHasMenu() {
-        return hasMenu;
+    public boolean getHasWinnerScreen() {
+        return hasWinnerScreen;
     }
 
-    public void setRectangleStart(boolean rectangleStart) {
-        this.rectangleStart = rectangleStart;
+    public void setRectangleTryAgain(boolean rectangleStart) {
+        this.rectangleTryAgain = rectangleStart;
     }
 }
