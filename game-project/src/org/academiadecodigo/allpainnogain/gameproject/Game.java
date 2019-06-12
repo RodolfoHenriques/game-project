@@ -4,6 +4,9 @@ import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player2;
 
+import java.util.ConcurrentModificationException;
+import java.util.LinkedList;
+
 public class Game {
 
     private int delay;
@@ -18,76 +21,49 @@ public class Game {
     }
 
 
+
     public void init() {
 
         BattleField battleField = new BattleField();
         battleField.init();
-        player1 = new Player1("P1", new Tank(20, 20));
-        player2 = new Player2("P2", new Tank(1326, 728));
+        player1 = new Player1("P1", new Tank(90, 90,"t1.png"));
+        player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
 
     }
-
 
     public void start() throws InterruptedException {
 
         while (true) {
-
-            Collidable.checkTankBulletCollision();
             Thread.sleep(delay);
-
             ((Player1) player1).moveTank();
             ((Player2) player2).moveTank();
-
-            moveAllBullets();
-
-            if (Collidable.listTanks.get(0).getHealth() <= 0) {
-
-                System.out.println("PLAYER 2 WINS!");
-                end = true;
-                return;
-
-            } else if (Collidable.listTanks.get(1).getHealth() <= 0) {
-
-                System.out.println("PLAYER 1 WINS!");
-                end = true;
-                return;
-            }
+            moveBullets();
+            winnerCheck();
         }
     }
 
-
-    public void moveAllBullets() {
-
-        for (int i = 0; i < player1.getTank().getBulletList().size(); i++) {
-
-            if (player1.getTank().getBulletList().get(i).isPuuuuuuummm()) {
-
-                player1.getTank().getBulletList().remove(player1.getTank().getBulletList().get(i));
-                continue;
-            }
-
-            (player1.getTank().getBulletList().get(i)).move();
-        }
-
-        for (int i = 0; i < player2.getTank().getBulletList().size(); i++) {
-
-            if (player2.getTank().getBulletList().get(i).isPuuuuuuummm()) {
-
-                player2.getTank().getBulletList().remove(player2.getTank().getBulletList().get(i));
-                continue;
-            }
-
-            (player2.getTank().getBulletList().get(i)).move();
+    public void winnerCheck() {
+        if (Collidable.listTanks.get(0).getHealth() <= 0) {
+            System.out.println("PLAYER 2 WINS!");
+            end = true;
+            return;
+        } else if (Collidable.listTanks.get(1).getHealth() <= 0) {
+            System.out.println("PLAYER 1 WINS!");
+            end = true;
+            return;
         }
     }
-
 
     public boolean getEnd() {
-
         return end;
     }
 
+    public void moveBullets(){
 
+        for (int i = 0; i < Collidable.listBullets.size(); i++) {
+            Collidable.listBullets.get(i).move();
+        }
+    }
 }
 
 

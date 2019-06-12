@@ -2,21 +2,24 @@ package org.academiadecodigo.allpainnogain.gameproject;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class BattleField {
 
-    public static final int MARGIN = 0;
-    public static final int WIDTH = 1366 ;
-    public static final int HEIGHT = 768;
+    public static final int MARGIN = 60;
+    public static final int WIDTH = 1246 ;
+    public static final int HEIGHT = 648;
 
     // default constructor
 
 
     public void init(){
-        Rectangle battleFieldRectangle = new Rectangle(MARGIN,MARGIN,WIDTH,HEIGHT);
+        /*Rectangle battleFieldRectangle = new Rectangle(MARGIN,MARGIN,WIDTH,HEIGHT);
         battleFieldRectangle.setColor(Color.DARK_GRAY);
-        battleFieldRectangle.fill();
+        battleFieldRectangle.fill();*/
 
+        Picture battleFieldRectangle = new Picture(0,0,"arena1.png");
+        battleFieldRectangle.draw();
 
 
         Obstacle obstacle1 = new Obstacle(150, 150, "fiveTrees.png");
