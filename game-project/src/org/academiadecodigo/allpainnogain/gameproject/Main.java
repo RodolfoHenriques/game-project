@@ -10,7 +10,19 @@ public class Main {
         Menu menu = new Menu();
 
         while (true) {
+
             menu.createMenu();
+            Sound sound = new Sound("/Resources/menuMusic.wav");
+
+            try {
+                sound.loopIndef();
+
+                Thread.sleep(0); // wait 1 seconds
+
+            } catch (InterruptedException e) {
+
+                System.err.println(e.getMessage());
+            }
 
             while (menu.getHasMenu()) {
                 Thread.sleep(0);
@@ -25,6 +37,10 @@ public class Main {
 
                     game.init();
                     game.start();
+
+                    if(game.getEnd()){
+                        sound.close();
+                    }
                 }
 
                 if (menu.getRectangleGuide()) {
