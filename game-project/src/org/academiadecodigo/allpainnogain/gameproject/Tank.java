@@ -5,6 +5,7 @@ import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
@@ -12,28 +13,19 @@ import java.util.LinkedList;
 public class Tank extends Collidable {
 
     private int health = 100;
-    private boolean destroyed;
-    private Position tankPos;
-    private Rectangle tankRectangle;
     private int direction = 8;
     private int step = 3;
-    private Bullet bullet;
-    private int height = 40;
-    private int width = 40;
-    protected LinkedList<Bullet> bulletList = new LinkedList<Bullet>();
+    private int height = 50;
+    private int width = 50;
+    private Position tankPos;
+    private Picture tankRectangle;
 
 
-    public Tank(int x, int y) {
+    public Tank(int x, int y, String file) {
         this.tankPos = new Position(x, y);
-        tankRectangle = new Rectangle(x, y, width, height);
-        tankRectangle.setColor(Color.LIGHT_GRAY);
-        tankRectangle.fill();
+        tankRectangle = new Picture(x, y, file);
+        tankRectangle.draw();
         listTanks.add(this);
-    }
-
-    public boolean isDestroyed() {
-
-        return destroyed;
     }
 
     public void moveTank() {
@@ -114,30 +106,12 @@ public class Tank extends Collidable {
         tankPos.setY(currentTankPosY);
     }
 
-    public int getDirection() {
-        return direction;
-    }
-
-    public Position getTankPos() {
-        return tankPos;
-    }
-
     public void setDirection(int direction) {
         this.direction = direction;
     }
 
     public void shoot() {
-
-
-        bullet = new Bullet(tankPos.getX(), tankPos.getY(), direction, this);
-        bulletList.add(bullet);
-
-
-    }
-
-
-    public LinkedList<Bullet> getBulletList() {
-        return bulletList;
+        new Bullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
     @Override
@@ -166,11 +140,9 @@ public class Tank extends Collidable {
         for (Tank tank : listTanks) {
             for (Obstacle obstacle : listObstacles) {
                 if (prevX(direction) < obstacle.getX() + obstacle.getWidth() && prevX(direction) + tank.getWidth() > obstacle.getX() && prevY(direction) < obstacle.getY() + obstacle.getHeight() && prevY(direction) + tank.getHeight() > obstacle.getY()) {
-                    //System.out.println("wert");
                     return true;
                 }
             }
-
         }
         return false;
     }
@@ -180,7 +152,6 @@ public class Tank extends Collidable {
         for (Tank listTank : listTanks) {
             if (listTank != this) {
                 if (prevX(direction) < listTank.getX() + listTank.getWidth() && prevX(direction) + getWidth() > listTank.getX() && prevY(direction) < listTank.getY() + listTank.getHeight() && prevY(direction) + getHeight() > listTank.getY()) {
-                    //System.out.println("tank");
                     return true;
                 }
             }

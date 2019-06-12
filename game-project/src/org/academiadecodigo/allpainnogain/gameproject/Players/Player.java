@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 abstract public class Player implements KeyboardHandler {
 
-    private String name;  // receive input player
+    private String name;  // receive input player. Is it necessary?
     private Tank tank;
     protected Keyboard keyboard;
     protected boolean isUp;
@@ -26,14 +26,7 @@ abstract public class Player implements KeyboardHandler {
 
     }
 
-    public boolean hasTank() {
-        return !tank.isDestroyed();
-    }
-
-
     public abstract void initKeyboard();
-
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -57,16 +50,11 @@ abstract public class Player implements KeyboardHandler {
 
     }
 
-
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
     public void shoot(){
         this.tank.shoot();
-    }
-
-    public Tank getTank() {
-        return tank;
     }
 }

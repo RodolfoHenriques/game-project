@@ -22,8 +22,8 @@ public class Game {
 
         BattleField battleField = new BattleField();
         battleField.init();
-        player1 = new Player1("P1", new Tank(20, 20));
-        player2 = new Player2("P2", new Tank(1326, 728));
+        player1 = new Player1("P1", new Tank(90, 90, "t1.png"));
+        player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
 
     }
 
@@ -31,53 +31,38 @@ public class Game {
     public void start() throws InterruptedException {
 
         while (true) {
-
-            Collidable.checkTankBulletCollision();
             Thread.sleep(delay);
-
             ((Player1) player1).moveTank();
             ((Player2) player2).moveTank();
 
-            moveAllBullets();
+            moveBullets();
+            winnerCheck();
 
-            if (Collidable.listTanks.get(0).getHealth() <= 0) {
 
-                System.out.println("PLAYER 2 WINS!");
-                end = true;
-                return;
-
-            } else if (Collidable.listTanks.get(1).getHealth() <= 0) {
-
-                System.out.println("PLAYER 1 WINS!");
-                end = true;
-                return;
-            }
         }
     }
 
 
-    public void moveAllBullets() {
+    public void winnerCheck() {
+        if (Collidable.listTanks.get(0).getHealth() <= 0) {
 
-        for (int i = 0; i < player1.getTank().getBulletList().size(); i++) {
+            System.out.println("PLAYER 2 WINS!");
+            end = true;
+            return;
 
-            if (player1.getTank().getBulletList().get(i).isPuuuuuuummm()) {
+        } else if (Collidable.listTanks.get(1).getHealth() <= 0) {
 
-                player1.getTank().getBulletList().remove(player1.getTank().getBulletList().get(i));
-                continue;
-            }
-
-            (player1.getTank().getBulletList().get(i)).move();
+            System.out.println("PLAYER 1 WINS!");
+            end = true;
+            return;
         }
+    }
 
-        for (int i = 0; i < player2.getTank().getBulletList().size(); i++) {
 
-            if (player2.getTank().getBulletList().get(i).isPuuuuuuummm()) {
+    public void moveBullets() {
 
-                player2.getTank().getBulletList().remove(player2.getTank().getBulletList().get(i));
-                continue;
-            }
-
-            (player2.getTank().getBulletList().get(i)).move();
+        for (int i = 0; i < Collidable.listBullets.size(); i++) {
+            Collidable.listBullets.get(i).move();
         }
     }
 
