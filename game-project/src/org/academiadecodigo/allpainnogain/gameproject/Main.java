@@ -41,13 +41,15 @@ public class Main {
 
                     try {
                         game.start();
+                        if(game.getEnd()){
+                            System.out.println(game.getEnd() + " main");
+                            sound.close();
+                        }
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }
 
-                    if(game.getEnd()){
-                        sound.close();
-                    }
+
                 }
 
                 if (menu.getRectangleGuide()) {

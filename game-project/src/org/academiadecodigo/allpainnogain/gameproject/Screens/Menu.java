@@ -69,33 +69,36 @@ public class Menu implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
+        if(hasMenu){
 
-        switch (keyboardEvent.getKey()) {
+            switch (keyboardEvent.getKey()) {
 
-            case KeyboardEvent.KEY_UP:
-                selectMenuGuide.delete();
-                selectMenuStart.draw();
+                case KeyboardEvent.KEY_UP:
+                    selectMenuGuide.delete();
+                    selectMenuStart.draw();
 
-                rectangleStart = true;
-                rectangleGuide = false;
+                    rectangleStart = true;
+                    rectangleGuide = false;
 
-                break;
+                    break;
 
-            case KeyboardEvent.KEY_DOWN:
-                selectMenuStart.delete();
-                selectMenuGuide.draw();
+                case KeyboardEvent.KEY_DOWN:
+                    selectMenuStart.delete();
+                    selectMenuGuide.draw();
 
-                rectangleGuide = true;
-                rectangleStart = false;
+                    rectangleGuide = true;
+                    rectangleStart = false;
 
-                break;
+                    break;
 
-            case KeyboardEvent.KEY_SPACE:
-                deleteMenu();
+                case KeyboardEvent.KEY_SPACE:
+                    deleteMenu();
 
-                space = true;
-                hasMenu = false;
+                    space = true;
+                    hasMenu = false;
+            }
         }
+
     }
 
 
