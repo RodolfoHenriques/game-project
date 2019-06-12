@@ -33,15 +33,13 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-        while (true) {
+        while (!end) {
             Thread.sleep(delay);
             ((Player1) player1).moveTank();
             ((Player2) player2).moveTank();
 
             moveBullets();
             winnerCheck();
-
-
         }
     }
 
@@ -51,13 +49,11 @@ public class Game {
 
             System.out.println("PLAYER 2 WINS!");
             end = true;
-            return;
 
         } else if (Collidable.listTanks.get(1).getHealth() <= 0) {
 
             System.out.println("PLAYER 1 WINS!");
             end = true;
-            return;
         }
     }
 
@@ -71,7 +67,6 @@ public class Game {
 
 
     public boolean getEnd() {
-
         return end;
     }
 

@@ -68,32 +68,34 @@ public class WinnerScreen implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
+        if(hasWinnerScreen){
 
-        switch (keyboardEvent.getKey()) {
+            switch (keyboardEvent.getKey()) {
 
-            case KeyboardEvent.KEY_UP:
-                selectExit.delete();
-                selectTryAgain.draw();
+                case KeyboardEvent.KEY_UP:
+                    selectExit.delete();
+                    selectTryAgain.draw();
 
-                rectangleTryAgain = true;
-                rectangleExit = false;
+                    rectangleTryAgain = true;
+                    rectangleExit = false;
 
-                break;
+                    break;
 
-            case KeyboardEvent.KEY_DOWN:
-                selectTryAgain.delete();
-                selectExit.draw();
+                case KeyboardEvent.KEY_DOWN:
+                    selectTryAgain.delete();
+                    selectExit.draw();
 
-                rectangleExit = true;
-                rectangleTryAgain = false;
+                    rectangleExit = true;
+                    rectangleTryAgain = false;
 
-                break;
+                    break;
 
-            case KeyboardEvent.KEY_SPACE:
-                deleteWinnerScreen();
+                case KeyboardEvent.KEY_SPACE:
+                    deleteWinnerScreen();
 
-                space = true;
-                hasWinnerScreen = false;
+                    space = true;
+                    hasWinnerScreen = false;
+            }
         }
     }
 
