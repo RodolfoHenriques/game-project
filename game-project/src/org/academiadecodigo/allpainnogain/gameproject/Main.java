@@ -5,27 +5,31 @@ import org.academiadecodigo.allpainnogain.gameproject.Screens.Menu;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
+        Game game = new Game(15);
         Menu menu = new Menu();
+        Sound sound = new Sound("/menuMusic.wav");
 
         while (true) {
 
             menu.createMenu();
-            Sound sound = new Sound("/Resources/menuMusic.wav");
+
 
             try {
                 sound.loopIndef();
-
                 Thread.sleep(0); // wait 1 seconds
 
             } catch (InterruptedException e) {
-
                 System.err.println(e.getMessage());
             }
 
             while (menu.getHasMenu()) {
-                Thread.sleep(0);
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    System.err.println(e.getMessage());
+                }
             }
 
             if (menu.getSpace()) {
@@ -33,10 +37,13 @@ public class Main {
                 if (menu.getRectangleStart()) {
                     menu.deleteMenu();
 
-                    Game game = new Game(15);
-
                     game.init();
-                    game.start();
+
+                    try {
+                        game.start();
+                    } catch (InterruptedException e) {
+                        System.err.println(e.getMessage());
+                    }
 
                     if(game.getEnd()){
                         sound.close();
@@ -49,7 +56,11 @@ public class Main {
                     guide.createGuide();
 
                     while (guide.getHasGuide()) {
-                        Thread.sleep(0);
+                        try {
+                            Thread.sleep(0);
+                        } catch (InterruptedException e) {
+                            System.err.println(e.getMessage());
+                        }
                     }
 
                     if (guide.getGoBack()) {

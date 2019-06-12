@@ -3,6 +3,8 @@ package org.academiadecodigo.allpainnogain.gameproject;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player2;
+import org.academiadecodigo.allpainnogain.gameproject.Screens.Guide;
+import org.academiadecodigo.allpainnogain.gameproject.Screens.Menu;
 
 public class Game {
 
@@ -24,6 +26,7 @@ public class Game {
         battleField.init();
         player1 = new Player1("P1", new Tank(90, 90, "t1.png"));
         player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
+
 
     }
 
