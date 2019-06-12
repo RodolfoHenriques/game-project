@@ -35,16 +35,18 @@ public class Main {
             if (menu.getSpace()) {
 
                 if (menu.getRectangleStart()) {
+
                     menu.deleteMenu();
+
+                    if(!menu.getHasMenu()){
+                        sound.close();
+                    }
 
                     game.init();
 
                     try {
                         game.start();
-                        if(game.getEnd()){
-                            System.out.println(game.getEnd() + " main");
-                            sound.close();
-                        }
+
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }

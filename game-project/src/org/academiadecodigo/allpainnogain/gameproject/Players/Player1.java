@@ -2,6 +2,7 @@ package org.academiadecodigo.allpainnogain.gameproject.Players;
 
 
 import org.academiadecodigo.allpainnogain.gameproject.Game;
+import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.allpainnogain.gameproject.Tank;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -103,6 +104,8 @@ public class Player1 extends Player {
                 isLeft = true;
                 break;
             case KeyboardEvent.KEY_1:
+                Sound sound = new Sound("/VOLUME_sound2.wav");
+                sound.play(true);
                 break;
 
 

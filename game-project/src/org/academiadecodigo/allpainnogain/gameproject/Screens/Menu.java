@@ -23,6 +23,8 @@ public class Menu implements KeyboardHandler {
     private boolean space;
     private boolean hasMenu;
 
+    private Sound soundMenu = new Sound("/menuMusic.wav");
+
 
     public Menu() {
 
@@ -36,6 +38,7 @@ public class Menu implements KeyboardHandler {
         pictureMenu.draw();
         selectMenuStart.draw();
         hasMenu = true;
+        soundMenu.play(true);
     }
 
 
@@ -44,6 +47,7 @@ public class Menu implements KeyboardHandler {
         pictureMenu.delete();
         selectMenuGuide.delete();
         selectMenuStart.delete();
+        soundMenu.close();
     }
 
 

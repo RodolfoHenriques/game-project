@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -11,17 +12,20 @@ public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
     private Picture pictureWinnerScreen = new Picture(0, 0, "poop2.png");
-
+    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop2.png");
+    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop2.png");
 
     //change values of rectangle
-    private Rectangle selectTryAgain = new Rectangle(80, 50, 305, 120);
-    private Rectangle selectExit = new Rectangle(80, 185, 305, 120);
+    private Rectangle selectTryAgain = new Rectangle();
+    private Rectangle selectExit = new Rectangle();
 
     private boolean rectangleTryAgain = true;
     private boolean rectangleExit;
 
     private boolean space;
     private boolean hasWinnerScreen;
+
+    private Sound soundWinnerScreen = new Sound("/clapping.wav");
 
     public WinnerScreen() {
 
@@ -34,6 +38,7 @@ public class WinnerScreen implements KeyboardHandler {
         pictureWinnerScreen.draw();
         selectTryAgain.draw();
         hasWinnerScreen = true;
+        soundWinnerScreen.play(true);
     }
 
 
@@ -42,6 +47,7 @@ public class WinnerScreen implements KeyboardHandler {
         pictureWinnerScreen.delete();
         selectExit.delete();
         selectTryAgain.delete();
+        soundWinnerScreen.close();
     }
 
 

@@ -5,6 +5,7 @@ import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player2;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.Guide;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.Menu;
+import org.academiadecodigo.allpainnogain.gameproject.Screens.WinnerScreen;
 
 public class Game {
 
@@ -40,6 +41,18 @@ public class Game {
 
             moveBullets();
             winnerCheck();
+        }
+
+        WinnerScreen winnerScreen = new WinnerScreen();
+
+        winnerScreen.createWinnerScreen();
+
+        while (winnerScreen.getHasWinnerScreen()) {
+            try {
+                Thread.sleep(0);
+            } catch (InterruptedException e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
