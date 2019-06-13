@@ -6,6 +6,8 @@ import org.academiadecodigo.allpainnogain.gameproject.Players.Player2;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.Guide;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.Menu;
 import org.academiadecodigo.allpainnogain.gameproject.Screens.WinnerScreen;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Game {
 
@@ -15,6 +17,8 @@ public class Game {
     private Player player1;
     private Player player2;
     private Tank tank;
+    private Rectangle energyBarP1;
+    private Rectangle energyBarP2;
 
 
     public Game(int delay) {
@@ -28,6 +32,8 @@ public class Game {
         battleField.init();
         player1 = new Player1("P1", new Tank(90, 90, "t1.png"));
         player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
+        energyBarP1 = new Rectangle(0, BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
+        energyBarP2 = new Rectangle(BattleField.WIDTH+BattleField.MARGIN+(BattleField.MARGIN/2), BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
 
 
     }
@@ -42,6 +48,7 @@ public class Game {
 
             moveBullets();
             winnerCheck();
+            energyBars();
         }
 
         WinnerScreen winnerScreen = new WinnerScreen();
@@ -121,6 +128,18 @@ public class Game {
 
             }
         }
+
+    }
+
+    public void energyBars() {
+        energyBarP1.delete();
+        energyBarP1 = new Rectangle(0, BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
+        energyBarP1.setColor(Color.LIGHT_GRAY);
+        energyBarP1.fill();
+        energyBarP2.delete();
+        energyBarP2 = new Rectangle(BattleField.WIDTH+BattleField.MARGIN+(BattleField.MARGIN/2), BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
+        energyBarP2.setColor(Color.LIGHT_GRAY);
+        energyBarP2.fill();
 
     }
 
