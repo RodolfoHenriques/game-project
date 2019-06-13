@@ -140,6 +140,12 @@ public class Tank extends Collidable {
         for (Tank tank : listTanks) {
             for (Obstacle obstacle : listObstacles) {
                 if (prevX(direction) < obstacle.getX() + obstacle.getWidth() && prevX(direction) + tank.getWidth() > obstacle.getX() && prevY(direction) < obstacle.getY() + obstacle.getHeight() && prevY(direction) + tank.getHeight() > obstacle.getY()) {
+
+                    if(obstacle instanceof Goat){
+                        Sound sound = new Sound("/goatsScream.wav");
+                        sound.play(true);
+                    }
+
                     return true;
                 }
             }
