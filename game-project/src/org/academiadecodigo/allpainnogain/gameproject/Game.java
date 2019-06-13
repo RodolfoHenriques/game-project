@@ -69,9 +69,17 @@ public class Game {
 
                 winnerScreen.deleteWinnerScreen();
 
-                //reset tanks health
+                end = false;
 
-                init();
+                Collidable.listBullets.clear();
+
+                player1.setTankHealth(100);
+                player2.setTankHealth(100);
+                player1.setTankPosition(90,90, "09.png");
+                player2.setTankPosition(1236,638, "t2.png");
+
+
+                //init();
 
                 try {
 
@@ -119,12 +127,12 @@ public class Game {
             }
             if (Collidable.listBullets.get(i) instanceof SpeedBullet) {
                 ((SpeedBullet) Collidable.listBullets.get(i)).moveSpeedBullet();
-                System.out.println(i);
+
                 continue;
             }
             if (Collidable.listBullets.get(i) instanceof CrazyBullet) {
                 ((CrazyBullet) Collidable.listBullets.get(i)).crazyMove();
-                System.out.println(i);
+
 
             }
         }

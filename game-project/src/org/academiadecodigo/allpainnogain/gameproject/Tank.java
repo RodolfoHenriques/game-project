@@ -218,5 +218,14 @@ public class Tank extends Collidable {
     int getHeight() {
         return tankHeight;
     }
-}
 
+    public void setNewPosition(int x, int y, String file){
+        tankPos = new Position(x, y);
+        tankRectangle.delete();
+        tankRectangle = new Picture(x, y, file);
+    }
+
+    public void setNewHealth(int health){
+        this.health = health;
+    }
+}
