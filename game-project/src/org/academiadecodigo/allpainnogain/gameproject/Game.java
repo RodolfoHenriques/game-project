@@ -14,7 +14,6 @@ public class Game {
 
     private Player player1;
     private Player player2;
-
     private Tank tank;
 
 
@@ -27,7 +26,7 @@ public class Game {
 
         BattleField battleField = new BattleField();
         battleField.init();
-        player1 = new Player1("P1", new Tank(90, 90, "09.png"));
+        player1 = new Player1("P1", new Tank(90, 90, "t1.png"));
         player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
 
 
@@ -73,15 +72,21 @@ public class Game {
                 player2.setTankPosition(1236,638, "t2.png");
 
 
+                //init();
+
                 try {
+
                     start();
 
                 } catch (InterruptedException e) {
                     System.err.println(e.getMessage());
                 }
+
+
             }
 
             if (winnerScreen.getRectangleExit()) {
+
                 System.exit(0);
             }
         }
@@ -104,17 +109,32 @@ public class Game {
 
     public void moveBullets() {
 
-        for (int i = 0; i < Collidable.listBullets.size(); i++) {
-            Collidable.listBullets.get(i).move();
-        }
-    }
 
+        for (int i = 0; i < Collidable.listBullets.size(); i++) {
+            if (Collidable.listBullets.get(i) == null) {
+                return;
+            }
+            if (Collidable.listBullets.get(i) instanceof RegularBullet) {
+                ((RegularBullet) Collidable.listBullets.get(i)).moveRegularBullet();
+                continue;
+            }
+            if (Collidable.listBullets.get(i) instanceof SpeedBullet) {
+                ((SpeedBullet) Collidable.listBullets.get(i)).moveSpeedBullet();
+
+                continue;
+            }
+            if (Collidable.listBullets.get(i) instanceof CrazyBullet) {
+                ((CrazyBullet) Collidable.listBullets.get(i)).crazyMove();
+
+
+            }
+        }
+
+    }
 
     public boolean getEnd() {
         return end;
     }
 
-
 }
-
 

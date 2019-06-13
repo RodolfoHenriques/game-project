@@ -56,15 +56,15 @@ abstract public class Player implements KeyboardHandler {
     }
 
     public void shoot1() {
-        this.tank.shoot();
+        this.tank.shoot1();
     }
 
     public void shoot2() {
-        this.tank.shoot();
+        this.tank.shoot2();
     }
 
     public void shoot3() {
-        this.tank.shoot();
+        this.tank.shoot3();
     }
 
     public void setTankHealth(int health){
