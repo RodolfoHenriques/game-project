@@ -5,29 +5,29 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.Optional;
 
-public class Bullet extends Collidable {
+public abstract class Bullet extends Collidable {
 
 
     public static final int DAMAGE = 5;
-    private int direction;
-    private int step = 5;
-    private int counter;
-    private int outOfTankX;
-    private int outOfTankY;
-    private int bulletSizeX = 15;           //PESCADATE WITH RABATE IN BOCATE
-    private int bulletSizeY = 15;           //PESCADATE WITH RABATE IN BOCATE
-    private int bulletInitX;
-    private int bulletInitY;
-    private int auxX;
-    private int auxY;
-    private Picture regularBullet;
-    private Tank tank;
+    protected int direction;
+    protected int step = 5;
+    protected int counter;
+    protected int outOfTankX;
+    protected int outOfTankY;
+    protected int bulletSizeX = 15;           //PESCADATE WITH RABATE IN BOCATE
+    protected int bulletSizeY = 15;           //PESCADATE WITH RABATE IN BOCATE
+    protected int bulletInitX;
+    protected int bulletInitY;
+    protected int auxX;
+    protected int auxY;
+    protected Picture regularBullet;
+    protected Tank tank;
 
-    
+
     public Bullet(int tankPosX, int tankPosY, int direction, Tank tank) {
         bulletInitX = tankPosX + tank.getWidth() / 2 - bulletSizeX / 2;
         bulletInitY = tankPosY + tank.getHeight() / 2 - bulletSizeY / 2;
-        regularBullet = new Picture(bulletInitX, bulletInitY, "poop.png");
+        this.regularBullet = new Picture(bulletInitX, bulletInitY, "poop.png");
         this.tank = tank;
         this.direction = direction;
         outOfTankX = tank.getWidth() / 2 + bulletSizeX / 2 + 10;
@@ -37,130 +37,67 @@ public class Bullet extends Collidable {
         listBullets.add(this);
     }
 
-    public void move() {
 
-        int currentBulletPosX = regularBullet.getX();
-        int currentBulletPosY = regularBullet.getY();
+    public boolean hitWallAndObst(int outOfTankX, int outOfTankY, int currentBulletPosX, int currentBulletPosY, Direction dir) {
 
+        if (!checkBulletObjCollision()) {
+            switch (dir) {
+                case NORTH:
+                    if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN) {
+                        break;
+                    }
+                    return false;
+                case SOUTH:
+                    if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())) {
+                        break;
+                    }
+                    return false;
+                case EAST:
+                    if (currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth())) {
+                        break;
+                    }
+                    return false;
+                case WEST:
+                    if (currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN) {
+                        break;
+                    }
+                    return false;
 
-        Direction dir = Direction.values()[direction];
-
-        if (counter != 0) {
-            outOfTankX = 0;
-            outOfTankY = 0;
+                case SOUTHWEST:
+                    if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
+                            || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN) {
+                        break;
+                    }
+                    return false;
+                case NORTHEAST:
+                    if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
+                            || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth())) {
+                        break;
+                    }
+                    return false;
+                case SOUTHEAST:
+                    if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
+                            || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth())) {
+                        break;
+                    }
+                    return false;
+                case NORTHWEST:
+                    if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
+                            || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN) {
+                        break;
+                    }
+                    return false;
+            }
         }
-
-
-        counter++;
-
-
-        switch (dir) {
-            case NORTH:
-                if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosY -= (outOfTankX + step);
-                break;
-            case SOUTH:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosY += (outOfTankX + step);
-                break;
-
-            case EAST:
-                if (currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX += (outOfTankX + step);
-                break;
-
-            //MOV PIRILAU
-            //currentBulletPosY = auxY + ((int) (20-20*(Math.sin(counter*57))));
-            //currentBulletPosX += (outOfTankX + step + ((int) (20*(Math.sin(counter*57)))));
-
-            //currentBulletPosX += (outOfTankX + step);
-            //currentBulletPosY += (outOfTankX + step);
-
-            //PARABOLA INVERTIDA
-            //currentBulletPosX += (outOfTankX + step*5);
-            //currentBulletPosY = auxY - counter*counter;
-
-            //PARABOLA NORMAL
-            //currentBulletPosX += (outOfTankX + step*5);
-            //currentBulletPosY = auxY + counter*counter;
-
-            //PARA MANDAR DUAS BALAS
-
-            //currentBulletPosX += (outOfTankX + step * 5);
-            //currentBulletPosY = auxY + counter * 3;
-
-
-            case WEST:
-                if (currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX -= (outOfTankX + step);
-                break;
-
-            case SOUTHWEST:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
-                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX -= (outOfTankX + step);
-                currentBulletPosY += (outOfTankY + step);
-                break;
-
-            case NORTHEAST:
-                if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
-                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX += (outOfTankX + step);
-                currentBulletPosY -= (outOfTankY + step);
-                break;
-
-            case SOUTHEAST:
-                if (currentBulletPosY + outOfTankY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - regularBullet.getWidth())
-                        || currentBulletPosX + outOfTankX + 2 > (BattleField.WIDTH + BattleField.MARGIN - regularBullet.getWidth()) || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX += (outOfTankX + step);
-                currentBulletPosY += (outOfTankY + step);
-                break;
-
-            case NORTHWEST:
-                if (currentBulletPosY - outOfTankY - 2 < BattleField.MARGIN
-                        || currentBulletPosX - outOfTankX - 2 < BattleField.MARGIN || checkBulletObjCollision()) {
-                    removeBullet();
-                    return;
-                }
-                currentBulletPosX -= (outOfTankX + step);
-                currentBulletPosY -= (outOfTankY + step);
-                break;
-        }
-
-
-        regularBullet.translate(currentBulletPosX - regularBullet.getX(), currentBulletPosY - regularBullet.getY());
-        regularBullet.draw();
-        checkBulletTankCollision();
+        return true;
     }
+
 
     public void removeBullet() {
 
         listBullets.remove(this);
         this.regularBullet.delete();
-
     }
-
 
     boolean checkBulletObjCollision() {
 
@@ -251,5 +188,6 @@ public class Bullet extends Collidable {
         return regularBullet.getHeight();
     }
 
-
 }
+
+

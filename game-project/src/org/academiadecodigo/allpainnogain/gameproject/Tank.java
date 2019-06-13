@@ -2,8 +2,6 @@ package org.academiadecodigo.allpainnogain.gameproject;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.io.File;
-
 public class Tank extends Collidable {
     private int health = 100;
     private int direction = 8;
@@ -110,8 +108,16 @@ public class Tank extends Collidable {
         this.direction = direction;
     }
 
-    public void shoot() {
-        new Bullet(tankPos.getX(), tankPos.getY(), direction, this);
+    public void shoot1() {
+        new RegularBullet(tankPos.getX(), tankPos.getY(), direction, this);
+    }
+
+    public void shoot2(){
+        new SpeedBullet(tankPos.getX(), tankPos.getY(), direction, this);
+    }
+
+    public void shoot3(){
+        new CrazyBullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
     boolean checkTankObjCollision() {
@@ -211,16 +217,6 @@ public class Tank extends Collidable {
     @Override
     int getHeight() {
         return tankHeight;
-    }
-
-    public void setNewHealth(int health){
-        this.health = health;
-    }
-
-    public void setNewPosition(int x, int y, String file){
-        tankPos = new Position(x, y);
-        tankRectangle.delete();
-        tankRectangle = new Picture(x, y, file);
     }
 }
 

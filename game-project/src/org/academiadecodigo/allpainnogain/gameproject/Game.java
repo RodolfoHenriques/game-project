@@ -14,7 +14,6 @@ public class Game {
 
     private Player player1;
     private Player player2;
-
     private Tank tank;
 
 
@@ -63,24 +62,23 @@ public class Game {
 
                 winnerScreen.deleteWinnerScreen();
 
-                end = false;
+                //reset tanks health
 
-                Collidable.listBullets.clear();
-                player1.setTankHealth(100);
-                player2.setTankHealth(100);
-                player1.setTankPosition(90,90, "t1.png");
-                player2.setTankPosition(1236,638, "t2.png");
-
+                init();
 
                 try {
+
                     start();
 
                 } catch (InterruptedException e) {
                     System.err.println(e.getMessage());
                 }
+
+
             }
 
             if (winnerScreen.getRectangleExit()) {
+
                 System.exit(0);
             }
         }
@@ -103,17 +101,32 @@ public class Game {
 
     public void moveBullets() {
 
-        for (int i = 0; i < Collidable.listBullets.size(); i++) {
-            Collidable.listBullets.get(i).move();
-        }
-    }
 
+        for (int i = 0; i < Collidable.listBullets.size(); i++) {
+            if (Collidable.listBullets.get(i) == null) {
+                return;
+            }
+            if (Collidable.listBullets.get(i) instanceof RegularBullet) {
+                ((RegularBullet) Collidable.listBullets.get(i)).moveRegularBullet();
+                continue;
+            }
+            if (Collidable.listBullets.get(i) instanceof SpeedBullet) {
+                ((SpeedBullet) Collidable.listBullets.get(i)).moveSpeedBullet();
+                System.out.println(i);
+                continue;
+            }
+            if (Collidable.listBullets.get(i) instanceof CrazyBullet) {
+                ((CrazyBullet) Collidable.listBullets.get(i)).crazyMove();
+                System.out.println(i);
+
+            }
+        }
+
+    }
 
     public boolean getEnd() {
         return end;
     }
 
-
 }
-
 
