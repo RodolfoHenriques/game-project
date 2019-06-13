@@ -53,7 +53,18 @@ public class Menu implements KeyboardHandler {
 
     public void initKeyboard() {
 
-        KeyboardEvent up = new KeyboardEvent();
+        int[] keys = new int[]{KeyboardEvent.KEY_UP,
+                KeyboardEvent.KEY_DOWN,
+                KeyboardEvent.KEY_SPACE};
+
+        for (int key: keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKey(key);
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(event);
+        }
+
+        /*KeyboardEvent up = new KeyboardEvent();
         up.setKey(KeyboardEvent.KEY_UP);
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
@@ -67,7 +78,7 @@ public class Menu implements KeyboardHandler {
 
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
-        keyboard.addEventListener(space);
+        keyboard.addEventListener(space);*/
     }
 
 

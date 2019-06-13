@@ -11,13 +11,13 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureWinnerScreen = new Picture(0, 0, "poop2.png");
+    private Picture pictureWinnerScreen = new Picture(50, 0, "endMenu.png");
     private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop2.png");
     private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop2.png");
 
     //change values of rectangle
-    private Rectangle selectTryAgain = new Rectangle();
-    private Rectangle selectExit = new Rectangle();
+    private Rectangle selectTryAgain = new Rectangle(380, 360,620,160);
+    private Rectangle selectExit = new Rectangle(520, 520,335,160);
 
     private boolean rectangleTryAgain = true;
     private boolean rectangleExit;
@@ -53,7 +53,18 @@ public class WinnerScreen implements KeyboardHandler {
 
     public void initKeyboard() {
 
-        KeyboardEvent up = new KeyboardEvent();
+        int[] keys = new int[]{KeyboardEvent.KEY_UP,
+                KeyboardEvent.KEY_DOWN,
+                KeyboardEvent.KEY_SPACE};
+
+        for (int key: keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKey(key);
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(event);
+        }
+
+       /* KeyboardEvent up = new KeyboardEvent();
         up.setKey(KeyboardEvent.KEY_UP);
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
@@ -67,14 +78,13 @@ public class WinnerScreen implements KeyboardHandler {
 
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
-        keyboard.addEventListener(space);
+        keyboard.addEventListener(space);*/
     }
-
 
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if(hasWinnerScreen){
+        if (hasWinnerScreen) {
 
             switch (keyboardEvent.getKey()) {
 
