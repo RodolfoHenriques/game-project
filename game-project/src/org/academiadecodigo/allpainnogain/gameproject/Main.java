@@ -15,10 +15,9 @@ public class Main {
 
             menu.createMenu();
 
-
             try {
                 sound.loopIndef();
-                Thread.sleep(0); // wait 1 seconds
+                Thread.sleep(0);
 
             } catch (InterruptedException e) {
                 System.err.println(e.getMessage());

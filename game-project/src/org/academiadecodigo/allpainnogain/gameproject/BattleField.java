@@ -34,10 +34,10 @@ public class BattleField {
         Obstacle obstacle5 = new Obstacle(WIDTH / 2-40, HEIGHT / 2 + 15, "fiveTrees.png");
         obstacle5.drawObstacle();
 
-        Obstacle obstacle6 = new Obstacle(WIDTH/2+25, HEIGHT/4, "rock.png");
+        Obstacle obstacle6 = new Obstacle(WIDTH/2+25, HEIGHT/4, "goat.png");
         obstacle6.drawObstacle();
 
-        Obstacle obstacle7 = new Obstacle(WIDTH/2 +25, HEIGHT-HEIGHT/6, "rock.png");
+        Obstacle obstacle7 = new Obstacle(WIDTH/2 +25, HEIGHT-HEIGHT/6, "goat.png");
         obstacle7.drawObstacle();
 
         Obstacle obstacle8 = new Obstacle(WIDTH/7 - 25, HEIGHT-HEIGHT/7-20, "rock.png");
