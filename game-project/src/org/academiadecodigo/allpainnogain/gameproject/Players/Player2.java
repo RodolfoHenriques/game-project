@@ -20,122 +20,77 @@ public class Player2 extends Player {
 
     @Override
     public void initKeyboard() {
-        KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_I);
-        up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_K);
-        down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        int[] keys = new int[]{KeyboardEvent.KEY_UP, KeyboardEvent.KEY_DOWN, KeyboardEvent.KEY_RIGHT, KeyboardEvent.KEY_LEFT,
+                KeyboardEvent.KEY_B, KeyboardEvent.KEY_N, KeyboardEvent.KEY_M};
 
-        KeyboardEvent right = new KeyboardEvent();
-        right.setKey(KeyboardEvent.KEY_L);
-        right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        for (int key : keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKey(key);
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(event);
 
-        KeyboardEvent left = new KeyboardEvent();
-        left.setKey(KeyboardEvent.KEY_J);
-        left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent fire = new KeyboardEvent();
-        fire.setKey(KeyboardEvent.KEY_0);
-        fire.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-
-        KeyboardEvent upRelease = new KeyboardEvent();
-        upRelease.setKey(KeyboardEvent.KEY_I);
-        upRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent downRelease = new KeyboardEvent();
-        downRelease.setKey(KeyboardEvent.KEY_K);
-        downRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent rightRelease = new KeyboardEvent();
-        rightRelease.setKey(KeyboardEvent.KEY_L);
-        rightRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent leftRelease = new KeyboardEvent();
-        leftRelease.setKey(KeyboardEvent.KEY_J);
-        leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        KeyboardEvent shootRelease = new KeyboardEvent ();
-        shootRelease.setKey (KeyboardEvent.KEY_0);
-        shootRelease.setKeyboardEventType (KeyboardEventType.KEY_RELEASED);
-
-
-        keyboard.addEventListener (up);
-        keyboard.addEventListener (down);
-        keyboard.addEventListener (right);
-        keyboard.addEventListener (left);
-        keyboard.addEventListener (fire);
-
-        keyboard.addEventListener (upRelease);
-        keyboard.addEventListener (downRelease);
-        keyboard.addEventListener (rightRelease);
-        keyboard.addEventListener (leftRelease);
-        keyboard.addEventListener (shootRelease);
-
+            KeyboardEvent eventRelease = new KeyboardEvent();
+            eventRelease.setKey(key);
+            eventRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+            keyboard.addEventListener(eventRelease);
+        }
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-
-        switch (keyboardEvent.getKey ()) {
-            case KeyboardEvent.KEY_I:
-                tank.setDirection (0);
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_UP:
+                tank.setDirection(0);
                 isUp = true;
                 break;
-            case KeyboardEvent.KEY_K:
-                tank.setDirection (1);
+            case KeyboardEvent.KEY_DOWN:
+                tank.setDirection(1);
                 isDown = true;
                 break;
-            case KeyboardEvent.KEY_L:
-                tank.setDirection (2);
+            case KeyboardEvent.KEY_RIGHT:
+                tank.setDirection(2);
                 isRight = true;
                 break;
-            case KeyboardEvent.KEY_J:
-                tank.setDirection (3);
+            case KeyboardEvent.KEY_LEFT:
+                tank.setDirection(3);
                 isLeft = true;
                 break;
-            case KeyboardEvent.KEY_0:
-                Sound sound = new Sound("/VOLUME_sound3.wav");
-                sound.play(true);
-                break;
         }
-        super.keyPressed (keyboardEvent);
+        super.keyPressed(keyboardEvent);
     }
-
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey ()) {
-            case KeyboardEvent.KEY_I:
-                //  tank.setDirection(0);
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_UP:
                 isUp = false;
                 break;
-            case KeyboardEvent.KEY_K:
-                //tank.setDirection(1);
+            case KeyboardEvent.KEY_DOWN:
                 isDown = false;
                 break;
 
-            case KeyboardEvent.KEY_L:
-                //tank.setDirection(2);
+            case KeyboardEvent.KEY_RIGHT:
                 isRight = false;
                 break;
 
-            case KeyboardEvent.KEY_J:
-                //tank.setDirection(3);
+            case KeyboardEvent.KEY_LEFT:
                 isLeft = false;
                 break;
-            case KeyboardEvent.KEY_0:
-                shoot ();
+            case KeyboardEvent.KEY_B:
+                shoot1();
+                sound1.play(true);
                 break;
-
+            case KeyboardEvent.KEY_N:
+                shoot2();
+                sound1.play(true);
+                break;
+            case KeyboardEvent.KEY_M:
+                shoot3();
+                sound1.play(true);
+                break;
         }
-    }
-
-    public int setHealth(int health){
-        return tank.getHealth();
     }
 }
 

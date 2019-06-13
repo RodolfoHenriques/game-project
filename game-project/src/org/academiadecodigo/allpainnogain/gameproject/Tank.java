@@ -1,31 +1,23 @@
 package org.academiadecodigo.allpainnogain.gameproject;
 
-
-import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
-import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.util.ConcurrentModificationException;
-import java.util.LinkedList;
-
 public class Tank extends Collidable {
-
     private int health = 100;
     private int direction = 8;
     private int step = 3;
-    private int height = 50;
-    private int width = 50;
+    private int tankHeight;
+    private int tankWidth;
     private Position tankPos;
     private Picture tankRectangle;
-
 
     public Tank(int x, int y, String file) {
         this.tankPos = new Position(x, y);
         tankRectangle = new Picture(x, y, file);
         tankRectangle.draw();
         listTanks.add(this);
+        tankHeight = tankRectangle.getHeight();
+        tankWidth = tankRectangle.getWidth();
     }
 
     public void moveTank() {
@@ -36,35 +28,40 @@ public class Tank extends Collidable {
 
         switch (dir) {
             case NORTH:
-                if (currentTankPosY - 2 < BattleField.MARGIN || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("05.png");
+                if (currentTankPosY - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
                 currentTankPosY -= step;
                 break;
             case SOUTH:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankRectangle.getWidth()) || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("03.png");
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
                 }
                 currentTankPosY += step;
                 break;
 
             case EAST:
-                if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankRectangle.getWidth()) || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("09.png");
+                if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankWidth) || isCollide()) {
                     break;
                 }
                 currentTankPosX += step;
                 break;
 
             case WEST:
-                if (currentTankPosX - 2 < BattleField.MARGIN || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("08.png");
+                if (currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
                 currentTankPosX -= step;
                 break;
 
             case SOUTHWEST:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankRectangle.getWidth())
-                        || currentTankPosX - 2 < BattleField.MARGIN || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("01.png");
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
+                        || currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
                 currentTankPosX -= step;
@@ -72,8 +69,9 @@ public class Tank extends Collidable {
                 break;
 
             case NORTHEAST:
+                tankRectangle.load("07.png");
                 if (currentTankPosY - 2 < BattleField.MARGIN
-                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankRectangle.getWidth()) || checkTankObjCollision() || checkTankCollision()) {
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
                 }
                 currentTankPosX += step;
@@ -81,8 +79,9 @@ public class Tank extends Collidable {
                 break;
 
             case SOUTHEAST:
-                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankRectangle.getWidth())
-                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankRectangle.getWidth()) || checkTankObjCollision() || checkTankCollision()) {
+                tankRectangle.load("06.png");
+                if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
+                        || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
                 }
                 currentTankPosX += step;
@@ -90,18 +89,17 @@ public class Tank extends Collidable {
                 break;
 
             case NORTHWEST:
+                tankRectangle.load("02.png");
                 if (currentTankPosY - 2 < BattleField.MARGIN
-                        || currentTankPosX - 2 < BattleField.MARGIN || checkTankObjCollision() || checkTankCollision()) {
+                        || currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
                 currentTankPosX -= step;
                 currentTankPosY -= step;
                 break;
         }
-
-
         tankRectangle.translate(currentTankPosX - tankPos.getX(), currentTankPosY - tankPos.getY());
-
+        tankRectangle.draw();
         tankPos.setX(currentTankPosX);
         tankPos.setY(currentTankPosY);
     }
@@ -114,34 +112,14 @@ public class Tank extends Collidable {
         new Bullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
-    @Override
-    int getX() {
-        return tankPos.getX();
-    }
-
-    @Override
-    int getY() {
-        return tankPos.getY();
-    }
-
-    @Override
-    int getWidth() {
-        return width;
-    }
-
-    @Override
-    int getHeight() {
-        return height;
-    }
-
-
     boolean checkTankObjCollision() {
-
         for (Tank tank : listTanks) {
             for (Obstacle obstacle : listObstacles) {
-                if (prevX(direction) < obstacle.getX() + obstacle.getWidth() && prevX(direction) + tank.getWidth() > obstacle.getX() && prevY(direction) < obstacle.getY() + obstacle.getHeight() && prevY(direction) + tank.getHeight() > obstacle.getY()) {
-
-                    if(obstacle instanceof Goat){
+                if (prevX(direction) < obstacle.getX() + obstacle.getWidth() &&
+                        prevX(direction) + tank.tankWidth > obstacle.getX() &&
+                        prevY(direction) < obstacle.getY() + obstacle.getHeight() &&
+                        prevY(direction) + tank.tankHeight > obstacle.getY()) {
+                    if (obstacle instanceof Goat) {
                         Sound sound = new Sound("/goatsScream.wav");
                         sound.play(true);
                     }
@@ -153,11 +131,13 @@ public class Tank extends Collidable {
         return false;
     }
 
-
-    boolean checkTankCollision() {
+    public boolean checkTankCollision() {
         for (Tank listTank : listTanks) {
             if (listTank != this) {
-                if (prevX(direction) < listTank.getX() + listTank.getWidth() && prevX(direction) + getWidth() > listTank.getX() && prevY(direction) < listTank.getY() + listTank.getHeight() && prevY(direction) + getHeight() > listTank.getY()) {
+                if (prevX(direction) < listTank.getX() + listTank.tankWidth &&
+                        prevX(direction) + tankWidth > listTank.getX() &&
+                        prevY(direction) < listTank.getY() + listTank.tankHeight &&
+                        prevY(direction) + tankHeight > listTank.getY()) {
                     return true;
                 }
             }
@@ -165,6 +145,9 @@ public class Tank extends Collidable {
         return false;
     }
 
+    public boolean isCollide() {
+        return checkTankObjCollision() || checkTankCollision();
+    }
 
     public int prevX(int direction) {
         switch (direction) {
@@ -182,7 +165,6 @@ public class Tank extends Collidable {
         }
         return 0;
     }
-
 
     public int prevY(int direction) {
         switch (direction) {
@@ -209,8 +191,24 @@ public class Tank extends Collidable {
         health = health - damage;
     }
 
-    public void setNewGameHealth(int health) {
-        this.health = health;
+    @Override
+    int getX() {
+        return tankPos.getX();
+    }
+
+    @Override
+    int getY() {
+        return tankPos.getY();
+    }
+
+    @Override
+    int getWidth() {
+        return tankWidth;
+    }
+
+    @Override
+    int getHeight() {
+        return tankHeight;
     }
 }
 
