@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -10,18 +11,21 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureWinnerScreen = new Picture(0, 0, "poop2.png");
-
+    private Picture pictureWinnerScreen = new Picture(50, 0, "endMenu.png");
+    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop2.png");
+    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop2.png");
 
     //change values of rectangle
-    private Rectangle selectTryAgain = new Rectangle(80, 50, 305, 120);
-    private Rectangle selectExit = new Rectangle(80, 185, 305, 120);
+    private Rectangle selectTryAgain = new Rectangle(380, 360,620,160);
+    private Rectangle selectExit = new Rectangle(520, 520,335,160);
 
     private boolean rectangleTryAgain = true;
     private boolean rectangleExit;
 
     private boolean space;
     private boolean hasWinnerScreen;
+
+    private Sound soundWinnerScreen = new Sound("/clapping.wav");
 
     public WinnerScreen() {
 
@@ -34,6 +38,7 @@ public class WinnerScreen implements KeyboardHandler {
         pictureWinnerScreen.draw();
         selectTryAgain.draw();
         hasWinnerScreen = true;
+        soundWinnerScreen.play(true);
     }
 
 
@@ -42,33 +47,28 @@ public class WinnerScreen implements KeyboardHandler {
         pictureWinnerScreen.delete();
         selectExit.delete();
         selectTryAgain.delete();
+        soundWinnerScreen.close();
     }
 
 
     public void initKeyboard() {
 
-        KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_UP);
-        up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        int[] keys = new int[]{KeyboardEvent.KEY_UP,
+                KeyboardEvent.KEY_DOWN,
+                KeyboardEvent.KEY_SPACE};
 
-        KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_DOWN);
-        down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent space = new KeyboardEvent();
-        space.setKey(KeyboardEvent.KEY_SPACE);
-        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(space);
+        for (int key: keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKey(key);
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(event);
+        }
     }
-
 
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if(hasWinnerScreen){
+        if (hasWinnerScreen) {
 
             switch (keyboardEvent.getKey()) {
 

@@ -23,6 +23,8 @@ public class Menu implements KeyboardHandler {
     private boolean space;
     private boolean hasMenu;
 
+    private Sound soundMenu = new Sound("/menuMusic.wav");
+
 
     public Menu() {
 
@@ -36,6 +38,7 @@ public class Menu implements KeyboardHandler {
         pictureMenu.draw();
         selectMenuStart.draw();
         hasMenu = true;
+        soundMenu.play(true);
     }
 
 
@@ -44,26 +47,22 @@ public class Menu implements KeyboardHandler {
         pictureMenu.delete();
         selectMenuGuide.delete();
         selectMenuStart.delete();
+        soundMenu.close();
     }
 
 
     public void initKeyboard() {
 
-        KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_UP);
-        up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        int[] keys = new int[]{KeyboardEvent.KEY_UP,
+                KeyboardEvent.KEY_DOWN,
+                KeyboardEvent.KEY_SPACE};
 
-        KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_DOWN);
-        down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent space = new KeyboardEvent();
-        space.setKey(KeyboardEvent.KEY_SPACE);
-        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(space);
+        for (int key: keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKey(key);
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboard.addEventListener(event);
+        }
     }
 
 

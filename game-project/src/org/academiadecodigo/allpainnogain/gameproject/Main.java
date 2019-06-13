@@ -15,10 +15,9 @@ public class Main {
 
             menu.createMenu();
 
-
             try {
                 sound.loopIndef();
-                Thread.sleep(0); // wait 1 seconds
+                Thread.sleep(0);
 
             } catch (InterruptedException e) {
                 System.err.println(e.getMessage());
@@ -35,16 +34,18 @@ public class Main {
             if (menu.getSpace()) {
 
                 if (menu.getRectangleStart()) {
+
                     menu.deleteMenu();
+
+                    if(!menu.getHasMenu()){
+                        sound.close();
+                    }
 
                     game.init();
 
                     try {
                         game.start();
-                        if(game.getEnd()){
-                            System.out.println(game.getEnd() + " main");
-                            sound.close();
-                        }
+
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }

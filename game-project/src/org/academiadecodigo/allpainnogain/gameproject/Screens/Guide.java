@@ -50,7 +50,7 @@ public class Guide implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_0) { //try catch
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_0) {
             deleteGuide();
             goBack = true;
         }
