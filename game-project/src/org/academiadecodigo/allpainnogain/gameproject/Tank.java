@@ -10,6 +10,7 @@ public class Tank extends Collidable {
     private int tankWidth;
     private Position tankPos;
     private Picture tankRectangle;
+    private Sound sound = new Sound("/goatsScream.wav");
 
     public Tank(int x, int y, String file) {
         this.tankPos = new Position(x, y);
@@ -28,14 +29,23 @@ public class Tank extends Collidable {
 
         switch (dir) {
             case NORTH:
-                tankRectangle.load("05.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("05.png");
+                } else {
+                    tankRectangle.load("E.png");
+                }
                 if (currentTankPosY - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
                 currentTankPosY -= step;
                 break;
             case SOUTH:
-                tankRectangle.load("03.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("03.png");
+                } else {
+                    tankRectangle.load("C.png");
+                }
+
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
                 }
@@ -43,7 +53,12 @@ public class Tank extends Collidable {
                 break;
 
             case EAST:
-                tankRectangle.load("09.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("09.png");
+                } else {
+                    tankRectangle.load("D.png");
+                }
+
                 if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankWidth) || isCollide()) {
                     break;
                 }
@@ -51,7 +66,12 @@ public class Tank extends Collidable {
                 break;
 
             case WEST:
-                tankRectangle.load("08.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("08.png");
+                } else {
+                    tankRectangle.load("G.png");
+                }
+
                 if (currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
                 }
@@ -59,7 +79,12 @@ public class Tank extends Collidable {
                 break;
 
             case SOUTHWEST:
-                tankRectangle.load("01.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("01.png");
+                } else {
+                    tankRectangle.load("H.png");
+                }
+
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
                         || currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
@@ -69,7 +94,12 @@ public class Tank extends Collidable {
                 break;
 
             case NORTHEAST:
-                tankRectangle.load("07.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("07.png");
+                } else {
+                    tankRectangle.load("B.png");
+                }
+
                 if (currentTankPosY - 2 < BattleField.MARGIN
                         || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
@@ -79,7 +109,12 @@ public class Tank extends Collidable {
                 break;
 
             case SOUTHEAST:
-                tankRectangle.load("06.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("06.png");
+                } else {
+                    tankRectangle.load("A.png");
+                }
+
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
                         || currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankHeight) || isCollide()) {
                     break;
@@ -89,7 +124,12 @@ public class Tank extends Collidable {
                 break;
 
             case NORTHWEST:
-                tankRectangle.load("02.png");
+                if (this == Collidable.listTanks.get(0)) {
+                    tankRectangle.load("02.png");
+                } else {
+                    tankRectangle.load("F.png");
+                }
+
                 if (currentTankPosY - 2 < BattleField.MARGIN
                         || currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
                     break;
@@ -112,11 +152,11 @@ public class Tank extends Collidable {
         new RegularBullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
-    public void shoot2(){
+    public void shoot2() {
         new SpeedBullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
-    public void shoot3(){
+    public void shoot3() {
         new CrazyBullet(tankPos.getX(), tankPos.getY(), direction, this);
     }
 
@@ -128,7 +168,7 @@ public class Tank extends Collidable {
                         prevY(direction) < obstacle.getY() + obstacle.getHeight() &&
                         prevY(direction) + tank.tankHeight > obstacle.getY()) {
                     if (obstacle instanceof Goat) {
-                        Sound sound = new Sound("/goatsScream.wav");
+
                         sound.play(true);
                     }
 
@@ -219,13 +259,13 @@ public class Tank extends Collidable {
         return tankHeight;
     }
 
-    public void setNewPosition(int x, int y, String file){
+    public void setNewPosition(int x, int y, String file) {
         tankPos = new Position(x, y);
         tankRectangle.delete();
         tankRectangle = new Picture(x, y, file);
     }
 
-    public void setNewHealth(int health){
+    public void setNewHealth(int health) {
         this.health = health;
     }
 }

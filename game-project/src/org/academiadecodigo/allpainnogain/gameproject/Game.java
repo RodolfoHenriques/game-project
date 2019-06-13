@@ -30,8 +30,8 @@ public class Game {
 
         BattleField battleField = new BattleField();
         battleField.init();
-        player1 = new Player1("P1", new Tank(90, 90, "t1.png"));
-        player2 = new Player2("P2", new Tank(1236, 638, "t2.png"));
+        player1 = new Player1("P1", new Tank(90, 90, "09.png"));
+        player2 = new Player2("P2", new Tank(1236, 638, "G.png"));
         energyBarP1 = new Rectangle(0, BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(0).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
         energyBarP2 = new Rectangle(BattleField.WIDTH+BattleField.MARGIN+(BattleField.MARGIN/2), BattleField.HEIGHT + (BattleField.MARGIN * 2)  - Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100, 30, Collidable.listTanks.get(1).getHealth() * (BattleField.HEIGHT+(BattleField.MARGIN*2))/100);
 
@@ -76,7 +76,7 @@ public class Game {
                 player1.setTankHealth(100);
                 player2.setTankHealth(100);
                 player1.setTankPosition(90,90, "09.png");
-                player2.setTankPosition(1236,638, "t2.png");
+                player2.setTankPosition(1236,638, "G.png");
 
 
                 //init();

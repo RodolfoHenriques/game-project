@@ -12,8 +12,8 @@ public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
     private Picture pictureWinnerScreen = new Picture(50, 0, "endMenu.png");
-    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop2.png");
-    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop2.png");
+    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop.png");
+    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop.png");
 
     //change values of rectangle
     private Rectangle selectTryAgain = new Rectangle(380, 360,620,160);
