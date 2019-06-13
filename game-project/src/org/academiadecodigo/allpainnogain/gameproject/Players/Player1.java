@@ -142,4 +142,9 @@ public class Player1 extends Player {
         }
 
     }
+
+
+    public void setHealth(int health){
+        tank.setNewGameHealth(health);
+    }
 }

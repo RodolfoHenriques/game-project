@@ -63,22 +63,6 @@ public class Menu implements KeyboardHandler {
             event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
             keyboard.addEventListener(event);
         }
-
-        /*KeyboardEvent up = new KeyboardEvent();
-        up.setKey(KeyboardEvent.KEY_UP);
-        up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent down = new KeyboardEvent();
-        down.setKey(KeyboardEvent.KEY_DOWN);
-        down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent space = new KeyboardEvent();
-        space.setKey(KeyboardEvent.KEY_SPACE);
-        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(up);
-        keyboard.addEventListener(down);
-        keyboard.addEventListener(space);*/
     }
 
 

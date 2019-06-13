@@ -134,6 +134,8 @@ public class Player2 extends Player {
         }
     }
 
-
+    public int setHealth(int health){
+        return tank.getHealth();
+    }
 }
 

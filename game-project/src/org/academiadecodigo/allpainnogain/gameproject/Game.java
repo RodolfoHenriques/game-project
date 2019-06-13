@@ -15,6 +15,8 @@ public class Game {
     private Player player1;
     private Player player2;
 
+    private Tank tank;
+
 
     public Game(int delay) {
         this.delay = delay;
@@ -54,6 +56,33 @@ public class Game {
                 System.err.println(e.getMessage());
             }
         }
+
+        if (winnerScreen.getSpace()) {
+
+            if (winnerScreen.getRectangleTryAgain()) {
+
+                winnerScreen.deleteWinnerScreen();
+
+                //reset tanks health
+
+                init();
+
+                try {
+
+                    start();
+
+                } catch (InterruptedException e) {
+                    System.err.println(e.getMessage());
+                }
+
+
+            }
+
+            if (winnerScreen.getRectangleExit()) {
+
+                System.exit(0);
+            }
+        }
     }
 
 
@@ -82,8 +111,6 @@ public class Game {
     public boolean getEnd() {
         return end;
     }
-
-
 }
 
 

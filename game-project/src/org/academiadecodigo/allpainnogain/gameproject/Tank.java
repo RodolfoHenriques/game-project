@@ -208,5 +208,9 @@ public class Tank extends Collidable {
     public void setHealth(int damage) {
         health = health - damage;
     }
+
+    public void setNewGameHealth(int health) {
+        this.health = health;
+    }
 }
 
