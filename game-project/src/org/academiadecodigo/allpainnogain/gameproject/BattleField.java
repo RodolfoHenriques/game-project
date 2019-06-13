@@ -22,14 +22,14 @@ public class BattleField {
         Obstacle obstacle1 = new Obstacle(WIDTH/8, HEIGHT/4, "fiveTrees.png");
         obstacle1.drawObstacle();
 
-        Obstacle obstacle2 = new Obstacle(WIDTH/4, HEIGHT/2, "nineTrees.png");
-        obstacle2.drawObstacle();
+        //Obstacle obstacle2 = new Obstacle(WIDTH/4, HEIGHT/2, "nineTrees.png");
+        //obstacle2.drawObstacle();
 
         Obstacle obstacle3 = new Obstacle(WIDTH - WIDTH/5, HEIGHT - HEIGHT/5+20, "fiveTrees.png");
         obstacle3.drawObstacle();
 
-        Obstacle obstacle4 = new Obstacle(WIDTH-WIDTH/6-20, HEIGHT/5, "nineTrees.png");
-        obstacle4.drawObstacle();
+        //Obstacle obstacle4 = new Obstacle(WIDTH-WIDTH/6-20, HEIGHT/5, "nineTrees.png");
+        //obstacle4.drawObstacle();
 
         Obstacle obstacle5 = new Obstacle(WIDTH / 2-40, HEIGHT / 2 + 15, "fiveTrees.png");
         obstacle5.drawObstacle();

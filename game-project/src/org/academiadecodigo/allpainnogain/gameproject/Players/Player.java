@@ -66,4 +66,12 @@ abstract public class Player implements KeyboardHandler {
     public void shoot3() {
         this.tank.shoot();
     }
+
+    public void setTankHealth(int health){
+        tank.setNewHealth(health);
+    }
+
+    public void setTankPosition(int x, int y, String file){
+        tank.setNewPosition(x, y, file);
+    }
 }

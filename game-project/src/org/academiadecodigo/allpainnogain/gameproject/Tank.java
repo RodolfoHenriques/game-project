@@ -2,6 +2,8 @@ package org.academiadecodigo.allpainnogain.gameproject;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.io.File;
+
 public class Tank extends Collidable {
     private int health = 100;
     private int direction = 8;
@@ -209,6 +211,16 @@ public class Tank extends Collidable {
     @Override
     int getHeight() {
         return tankHeight;
+    }
+
+    public void setNewHealth(int health){
+        this.health = health;
+    }
+
+    public void setNewPosition(int x, int y, String file){
+        tankPos = new Position(x, y);
+        tankRectangle.delete();
+        tankRectangle = new Picture(x, y, file);
     }
 }
 

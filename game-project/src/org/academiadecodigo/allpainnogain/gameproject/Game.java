@@ -63,23 +63,24 @@ public class Game {
 
                 winnerScreen.deleteWinnerScreen();
 
-                //reset tanks health
+                end = false;
 
-                init();
+                Collidable.listBullets.clear();
+                player1.setTankHealth(100);
+                player2.setTankHealth(100);
+                player1.setTankPosition(90,90, "t1.png");
+                player2.setTankPosition(1236,638, "t2.png");
+
 
                 try {
-
                     start();
 
                 } catch (InterruptedException e) {
                     System.err.println(e.getMessage());
                 }
-
-
             }
 
             if (winnerScreen.getRectangleExit()) {
-
                 System.exit(0);
             }
         }
@@ -111,6 +112,8 @@ public class Game {
     public boolean getEnd() {
         return end;
     }
+
+
 }
 
 
