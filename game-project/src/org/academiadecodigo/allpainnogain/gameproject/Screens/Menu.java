@@ -12,7 +12,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Menu implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureMenu = new Picture(0, 0, "menuImage.png");
+    private Picture pictureMenu = new Picture(0, 0, "/Resources/menuImage.png");
 
     private Rectangle selectMenuStart = new Rectangle(80, 50, 305, 120);
     private Rectangle selectMenuGuide = new Rectangle(80, 185, 305, 120);
@@ -23,7 +23,7 @@ public class Menu implements KeyboardHandler {
     private boolean space;
     private boolean hasMenu;
 
-    private Sound soundMenu = new Sound("/menuMusic.wav");
+    private Sound soundMenu = new Sound("/Resources/menuMusic.wav");
 
 
     public Menu() {
