@@ -21,7 +21,7 @@ public class BattleField {
         Obstacle obstacle2 = new Obstacle(WIDTH / 4, HEIGHT / 2, "/Resources/nineTrees.png");
         obstacle2.drawObstacle();
 
-        Obstacle obstacle3 = new Obstacle(WIDTH - WIDTH / 5, HEIGHT - HEIGHT / 5 + 20, "/Resourcesfive/Trees.png");
+        Obstacle obstacle3 = new Obstacle(WIDTH - WIDTH / 5, HEIGHT - HEIGHT / 5 + 20, "/Resources/fiveTrees.png");
         obstacle3.drawObstacle();
 
         Obstacle obstacle4 = new Obstacle(WIDTH - WIDTH / 6 - 20, HEIGHT / 5, "/Resources/nineTrees.png");
