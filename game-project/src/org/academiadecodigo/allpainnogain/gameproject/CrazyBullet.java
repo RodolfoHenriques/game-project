@@ -28,21 +28,21 @@ public class CrazyBullet extends Bullet {
             switch (dir) {
                 case NORTH:
                     currentBulletPosY -= outOfTankX + step;
-                    currentBulletPosX = auxX - ((int) (25 - 25 * (Math.sin(counter * 57))));
+                    currentBulletPosX = auxX + ((int) (17 * (Math.sin(counter * 57))));
                     break;
                 case SOUTH:
                     currentBulletPosY += (outOfTankX + step);
-                    currentBulletPosX = auxX + ((int) (25 - 25 * (Math.sin(counter * 57))));
+                    currentBulletPosX = auxX + ((int) (17 * (Math.sin(counter * 57))));
                     break;
 
                 case EAST:
                     currentBulletPosX += outOfTankY + step;
-                    currentBulletPosY = auxY + ((int) (25-25*(Math.sin(counter*57))));
+                    currentBulletPosY = auxY + ((int) (17*(Math.sin(counter*57))));
                     break;
 
                 case WEST:
                     currentBulletPosX -= outOfTankY + step;
-                    currentBulletPosY = auxY + ((int) (25-25*(Math.sin(counter*57))));
+                    currentBulletPosY = auxY + ((int) (17*(Math.sin(counter*57))));
                     break;
 
                 case SOUTHWEST:
