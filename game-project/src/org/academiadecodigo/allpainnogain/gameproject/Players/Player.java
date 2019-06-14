@@ -81,9 +81,7 @@ abstract public class Player implements KeyboardHandler {
         tank.setNewPosition(x, y, file);
     }
 
-    public boolean isQwerty() {
-        return qwerty;
-    }
+
 
     public void setQwerty(boolean qwerty) {
         this.qwerty = qwerty;
