@@ -1,6 +1,5 @@
 package org.academiadecodigo.allpainnogain.gameproject.Players;
 
-import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.allpainnogain.gameproject.Tank;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -43,18 +42,22 @@ public class Player2 extends Player {
             case KeyboardEvent.KEY_UP:
                 tank.setDirection(0);
                 isUp = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_DOWN:
                 tank.setDirection(1);
                 isDown = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 tank.setDirection(2);
                 isRight = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_LEFT:
                 tank.setDirection(3);
                 isLeft = true;
+                setQwerty(true);
                 break;
         }
         super.keyPressed(keyboardEvent);
