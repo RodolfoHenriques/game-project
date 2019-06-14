@@ -258,6 +258,7 @@ public class Tank extends Collidable {
     int getHeight() {
         return tankHeight;
     }
+<<<<<<< HEAD
 
     public void setNewPosition(int x, int y, String file) {
         tankPos = new Position(x, y);
@@ -268,4 +269,6 @@ public class Tank extends Collidable {
     public void setNewHealth(int health) {
         this.health = health;
     }
+=======
+>>>>>>> 52c4df4d2f2ee62d9171615e3353abd748ba6b94
 }
