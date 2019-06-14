@@ -49,8 +49,6 @@ public class Main {
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }
-
-
                 }
 
                 if (menu.getRectangleGuide()) {

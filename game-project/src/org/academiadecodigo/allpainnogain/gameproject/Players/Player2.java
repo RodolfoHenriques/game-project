@@ -80,7 +80,7 @@ public class Player2 extends Player {
                 break;
             case KeyboardEvent.KEY_B:
                 shoot1();
-                sound1.play(true);
+                sound2.play(true);
                 break;
             case KeyboardEvent.KEY_N:
                 shoot2();
@@ -88,7 +88,7 @@ public class Player2 extends Player {
                 break;
             case KeyboardEvent.KEY_M:
                 shoot3();
-                sound1.play(true);
+                sound3 .play(true);
                 break;
         }
     }

@@ -1,5 +1,9 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.Collidable;
+import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
+import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
+import org.academiadecodigo.allpainnogain.gameproject.Players.Player2;
 import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -11,9 +15,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureWinnerScreen = new Picture(50, 0, "endMenu.png");
-    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "poop.png");
-    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "poop.png");
+
+    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "winner1.png");
+    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "winner2.png");
 
     //change values of rectangle
     private Rectangle selectTryAgain = new Rectangle(380, 360,620,160);
@@ -27,6 +31,7 @@ public class WinnerScreen implements KeyboardHandler {
 
     private Sound soundWinnerScreen = new Sound("/clapping.wav");
 
+
     public WinnerScreen() {
 
         keyboard = new Keyboard(this);
@@ -34,8 +39,12 @@ public class WinnerScreen implements KeyboardHandler {
     }
 
     public void createWinnerScreen() {
+        if (Collidable.listTanks.get(0).getHealth() <= 0) {
+            pictureWinnerScreenPlayer2.draw();
+        } else {
+            pictureWinnerScreenPlayer1.draw();
+        }
 
-        pictureWinnerScreen.draw();
         selectTryAgain.draw();
         hasWinnerScreen = true;
         soundWinnerScreen.play(true);
@@ -44,7 +53,8 @@ public class WinnerScreen implements KeyboardHandler {
 
     public void deleteWinnerScreen() {
 
-        pictureWinnerScreen.delete();
+        pictureWinnerScreenPlayer1.delete();
+        pictureWinnerScreenPlayer2.delete();
         selectExit.delete();
         selectTryAgain.delete();
         soundWinnerScreen.close();

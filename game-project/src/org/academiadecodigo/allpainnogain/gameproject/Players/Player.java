@@ -24,9 +24,9 @@ abstract public class Player implements KeyboardHandler {
     public Player(String name, Tank tank) {
         this.name = name;
         this.tank = tank;
-        sound1 = new Sound("/VOLUME_sound2.wav");
-        sound2 = new Sound("/VOLUME_sound3.wav");
-        sound3 = new Sound("/VOLUME_sound5.wav");
+        sound1 = new Sound("/VOLUME_sound3.wav");
+        sound2 = new Sound("/VOLUME_sound13.wav");
+        sound3 = new Sound("/VOLUME_sound8.wav");
         keyboard = new Keyboard(this);
         initKeyboard();
     }
