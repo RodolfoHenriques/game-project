@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Guide implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureGuide = new Picture(0, 0, "fiveTrees.png"); //missing correct picture
+    private Picture pictureGuide = new Picture(0, 0, "guide.png"); //missing correct picture
 
     private boolean goBack;
     private boolean hasGuide;
@@ -40,7 +40,7 @@ public class Guide implements KeyboardHandler {
     public void initKeyboard() {
 
         KeyboardEvent goBack = new KeyboardEvent();
-        goBack.setKey(KeyboardEvent.KEY_0);
+        goBack.setKey(KeyboardEvent.KEY_SPACE);
         goBack.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         keyboard.addEventListener(goBack);
@@ -50,7 +50,7 @@ public class Guide implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_0) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
             deleteGuide();
             goBack = true;
         }

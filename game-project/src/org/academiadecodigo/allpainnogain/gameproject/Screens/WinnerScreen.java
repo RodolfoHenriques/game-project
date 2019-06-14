@@ -1,5 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject.Screens;
 
+import org.academiadecodigo.allpainnogain.gameproject.BattleField;
 import org.academiadecodigo.allpainnogain.gameproject.Collidable;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player;
 import org.academiadecodigo.allpainnogain.gameproject.Players.Player1;
@@ -20,8 +21,8 @@ public class WinnerScreen implements KeyboardHandler {
     private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "winner2.png");
 
     //change values of rectangle
-    private Rectangle selectTryAgain = new Rectangle(380, 360,620,160);
-    private Rectangle selectExit = new Rectangle(520, 520,335,160);
+    private Rectangle selectTryAgain = new Rectangle(BattleField.WIDTH-340, 15,450,100);
+    private Rectangle selectExit = new Rectangle(BattleField.WIDTH-130, BattleField.HEIGHT,220,100);
 
     private boolean rectangleTryAgain = true;
     private boolean rectangleExit;
