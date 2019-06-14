@@ -78,7 +78,7 @@ public class Player1 extends Player {
                 break;
             case KeyboardEvent.KEY_2:
                 shoot2();
-                sound1.play(true);
+                sound3.play(true);
                 break;
             case KeyboardEvent.KEY_3:
                 shoot3();
