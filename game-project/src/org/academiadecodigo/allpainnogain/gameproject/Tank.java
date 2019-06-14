@@ -172,7 +172,7 @@ public class Tank extends Collidable {
                         sound.play(true);
                     }
 
-                    return false;                 //Tank Collision disabled by option, to get better flow while playing.
+                    return true;
                 }
             }
         }
@@ -186,7 +186,7 @@ public class Tank extends Collidable {
                         prevX(direction) + tankWidth > listTank.getX() &&
                         prevY(direction) < listTank.getY() + listTank.tankHeight &&
                         prevY(direction) + tankHeight > listTank.getY()) {
-                    return true;
+                    return false; //Tank Collision disabled by option, to get better flow while playing.
                 }
             }
         }
