@@ -186,7 +186,7 @@ public class Tank extends Collidable {
                         prevX(direction) + tankWidth > listTank.getX() &&
                         prevY(direction) < listTank.getY() + listTank.tankHeight &&
                         prevY(direction) + tankHeight > listTank.getY()) {
-                    return true;
+                    return false; //Tank Collision disabled by option, to get better flow while playing.
                 }
             }
         }
@@ -259,6 +259,7 @@ public class Tank extends Collidable {
         return tankHeight;
     }
 
+
     public void setNewPosition(int x, int y, String file) {
         tankPos = new Position(x, y);
         tankRectangle.delete();
@@ -268,4 +269,5 @@ public class Tank extends Collidable {
     public void setNewHealth(int health) {
         this.health = health;
     }
+
 }

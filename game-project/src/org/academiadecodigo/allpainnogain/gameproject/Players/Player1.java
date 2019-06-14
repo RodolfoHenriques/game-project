@@ -8,6 +8,7 @@ public class Player1 extends Player {
 
     private Tank tank;
 
+
     public Player1(String name, Tank tank) {
         super(name, tank);
         this.tank = tank;
@@ -15,6 +16,8 @@ public class Player1 extends Player {
 
     public void moveTank() {
         tank.moveTank();
+
+
     }
 
     public void initKeyboard() {
@@ -39,18 +42,22 @@ public class Player1 extends Player {
             case KeyboardEvent.KEY_E:
                 tank.setDirection(0);
                 isUp = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_D:
                 tank.setDirection(1);
                 isDown = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_F:
                 tank.setDirection(2);
                 isRight = true;
+                setQwerty(true);
                 break;
             case KeyboardEvent.KEY_S:
                 tank.setDirection(3);
                 isLeft = true;
+                setQwerty(true);
                 break;
         }
 
@@ -87,4 +94,5 @@ public class Player1 extends Player {
 
         }
     }
+
 }

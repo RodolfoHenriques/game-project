@@ -4,7 +4,6 @@ import org.academiadecodigo.allpainnogain.gameproject.Sound;
 import org.academiadecodigo.allpainnogain.gameproject.Tank;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 abstract public class Player implements KeyboardHandler {
@@ -19,6 +18,7 @@ abstract public class Player implements KeyboardHandler {
     protected Sound sound1;
     protected Sound sound2;
     protected Sound sound3;
+    private boolean qwerty;
 
 
     public Player(String name, Tank tank) {
@@ -56,22 +56,34 @@ abstract public class Player implements KeyboardHandler {
     }
 
     public void shoot1() {
-        this.tank.shoot1();
+        if (qwerty) {
+            this.tank.shoot1();
+        }
     }
 
     public void shoot2() {
-        this.tank.shoot2();
+        if (qwerty) {
+            this.tank.shoot2();
+        }
     }
 
     public void shoot3() {
-        this.tank.shoot3();
+        if (qwerty) {
+            this.tank.shoot3();
+        }
     }
 
-    public void setTankHealth(int health){
+    public void setTankHealth(int health) {
         tank.setNewHealth(health);
     }
 
-    public void setTankPosition(int x, int y, String file){
+    public void setTankPosition(int x, int y, String file) {
         tank.setNewPosition(x, y, file);
+    }
+
+
+
+    public void setQwerty(boolean qwerty) {
+        this.qwerty = qwerty;
     }
 }
