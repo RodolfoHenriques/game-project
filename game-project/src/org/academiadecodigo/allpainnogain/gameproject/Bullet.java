@@ -1,9 +1,6 @@
 package org.academiadecodigo.allpainnogain.gameproject;
 
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import java.util.Optional;
 
 public abstract class Bullet extends Collidable {
 
@@ -14,8 +11,8 @@ public abstract class Bullet extends Collidable {
     protected int counter;
     protected int outOfTankX;
     protected int outOfTankY;
-    protected int bulletSizeX = 15;           //PESCADATE WITH RABATE IN BOCATE
-    protected int bulletSizeY = 15;           //PESCADATE WITH RABATE IN BOCATE
+    protected int bulletSizeX = 15;
+    protected int bulletSizeY = 15;
     protected int bulletInitX;
     protected int bulletInitY;
     protected int auxX;
@@ -27,7 +24,7 @@ public abstract class Bullet extends Collidable {
     public Bullet(int tankPosX, int tankPosY, int direction, Tank tank) {
         bulletInitX = tankPosX + tank.getWidth() / 2 - bulletSizeX / 2;
         bulletInitY = tankPosY + tank.getHeight() / 2 - bulletSizeY / 2;
-        this.regularBullet = new Picture(bulletInitX, bulletInitY, "poop.png");
+        this.regularBullet = new Picture(bulletInitX, bulletInitY, "/Resources/poop.png");
         this.tank = tank;
         this.direction = direction;
         outOfTankX = tank.getWidth() / 2 + bulletSizeX / 2 + 10;

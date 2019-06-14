@@ -17,8 +17,8 @@ public class WinnerScreen implements KeyboardHandler {
 
     private Keyboard keyboard;
 
-    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "winner1.png");
-    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "winner2.png");
+    private Picture pictureWinnerScreenPlayer1 = new Picture(0, 0, "/Resources/winner1.png");
+    private Picture pictureWinnerScreenPlayer2 = new Picture(0, 0, "/Resources/winner2.png");
 
     //change values of rectangle
     private Rectangle selectTryAgain = new Rectangle(BattleField.WIDTH-340, 15,450,100);
@@ -30,7 +30,7 @@ public class WinnerScreen implements KeyboardHandler {
     private boolean space;
     private boolean hasWinnerScreen;
 
-    private Sound soundWinnerScreen = new Sound("/clapping.wav");
+    private Sound soundWinnerScreen = new Sound("/Resources/clapping.wav");
 
 
     public WinnerScreen() {

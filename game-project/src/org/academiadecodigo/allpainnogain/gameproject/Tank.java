@@ -10,7 +10,7 @@ public class Tank extends Collidable {
     private int tankWidth;
     private Position tankPos;
     private Picture tankRectangle;
-    private Sound sound = new Sound("/goatsScream.wav");
+    private Sound sound = new Sound("/Resources/goatsScream.wav");
 
     public Tank(int x, int y, String file) {
         this.tankPos = new Position(x, y);
@@ -30,9 +30,9 @@ public class Tank extends Collidable {
         switch (dir) {
             case NORTH:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("05.png");
+                    tankRectangle.load("/Resources/05.png");
                 } else {
-                    tankRectangle.load("E.png");
+                    tankRectangle.load("/Resources/E.png");
                 }
                 if (currentTankPosY - 2 < BattleField.MARGIN || isCollide()) {
                     break;
@@ -41,9 +41,9 @@ public class Tank extends Collidable {
                 break;
             case SOUTH:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("03.png");
+                    tankRectangle.load("/Resources/03.png");
                 } else {
-                    tankRectangle.load("C.png");
+                    tankRectangle.load("/Resources/C.png");
                 }
 
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight) || isCollide()) {
@@ -54,9 +54,9 @@ public class Tank extends Collidable {
 
             case EAST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("09.png");
+                    tankRectangle.load("/Resources/09.png");
                 } else {
-                    tankRectangle.load("D.png");
+                    tankRectangle.load("/Resources/D.png");
                 }
 
                 if (currentTankPosX + 2 > (BattleField.WIDTH + BattleField.MARGIN - tankWidth) || isCollide()) {
@@ -67,9 +67,9 @@ public class Tank extends Collidable {
 
             case WEST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("08.png");
+                    tankRectangle.load("/Resources/08.png");
                 } else {
-                    tankRectangle.load("G.png");
+                    tankRectangle.load("/Resources/G.png");
                 }
 
                 if (currentTankPosX - 2 < BattleField.MARGIN || isCollide()) {
@@ -80,9 +80,9 @@ public class Tank extends Collidable {
 
             case SOUTHWEST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("01.png");
+                    tankRectangle.load("/Resources/01.png");
                 } else {
-                    tankRectangle.load("H.png");
+                    tankRectangle.load("/Resources/H.png");
                 }
 
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
@@ -95,9 +95,9 @@ public class Tank extends Collidable {
 
             case NORTHEAST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("07.png");
+                    tankRectangle.load("/Resources/07.png");
                 } else {
-                    tankRectangle.load("B.png");
+                    tankRectangle.load("/Resources/B.png");
                 }
 
                 if (currentTankPosY - 2 < BattleField.MARGIN
@@ -110,9 +110,9 @@ public class Tank extends Collidable {
 
             case SOUTHEAST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("06.png");
+                    tankRectangle.load("/Resources/06.png");
                 } else {
-                    tankRectangle.load("A.png");
+                    tankRectangle.load("/Resources/A.png");
                 }
 
                 if (currentTankPosY + 2 > (BattleField.HEIGHT + BattleField.MARGIN - tankHeight)
@@ -125,9 +125,9 @@ public class Tank extends Collidable {
 
             case NORTHWEST:
                 if (this == Collidable.listTanks.get(0)) {
-                    tankRectangle.load("02.png");
+                    tankRectangle.load("/Resources/02.png");
                 } else {
-                    tankRectangle.load("F.png");
+                    tankRectangle.load("/Resources/F.png");
                 }
 
                 if (currentTankPosY - 2 < BattleField.MARGIN

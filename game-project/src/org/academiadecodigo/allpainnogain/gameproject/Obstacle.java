@@ -7,7 +7,6 @@ public class Obstacle extends Collidable{
     private int x;
     private int y;
     private String pictureName;
-    private Position obstaclePos;
     private Picture picture;
 
 

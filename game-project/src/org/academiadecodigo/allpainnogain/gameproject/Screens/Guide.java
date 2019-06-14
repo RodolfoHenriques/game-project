@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Guide implements KeyboardHandler {
 
     private Keyboard keyboard;
-    private Picture pictureGuide = new Picture(0, 0, "guide.png"); //missing correct picture
+    private Picture pictureGuide = new Picture(0, 0, "/Resources/guide.png"); //missing correct picture
 
     private boolean goBack;
     private boolean hasGuide;

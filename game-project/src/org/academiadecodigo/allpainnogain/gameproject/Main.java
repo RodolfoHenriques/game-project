@@ -9,7 +9,7 @@ public class Main {
 
         Game game = new Game(15);
         Menu menu = new Menu();
-        Sound sound = new Sound("/menuMusic.wav");
+        Sound sound = new Sound("/Resources/menuMusic.wav");
 
         while (true) {
 
